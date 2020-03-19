@@ -1,0 +1,44 @@
+{
+  "institute_institute": {
+    "name": "Harvard University ",
+    "id": null,
+    "short_name": null,
+    "established_year": "1636",
+    "institute_type": "Private University",
+    "country_id": null,
+    "state_id": null,
+    "city_id": null,
+    "brochure": null
+  },
+  "institutes_institutecontactdetail": {
+    "website": "http://www.hio.harvard.edu/contact-us",
+    "phone_nos": "617-495-2789",
+    "fax": null,
+    "email_address": "elizabeth_capuano@harvard.edu",
+    "main_address": "1350 Massachusetts Ave, Cambridge, Massachusetts 02138, USA\n",
+    "latitude": null,
+    "longitude": null
+  },
+  "institutes_institutedetail": {
+    "number_of_programs": null,
+    "campus_size": null,
+    "no_of_international_students": null,
+    "intnl_students_percent": null,
+    "on_campus_hostel": null,
+    "hostel_fee": null,
+    "hostel_fee_currency_id": null,
+    "gender_ratio": null,
+    "student_faculty_ratio": null,
+    "bachelors_masters_ratio": null
+  },
+  "institutes_instituteranking": {
+    "ranking_authority_id": null,
+    "ranking_type_id": null,
+    "rank": null
+  },
+  "institute_coursefee": {
+    "min_fee": null,
+    "max_fee": null,
+    "currency_id": null
+  }
+}

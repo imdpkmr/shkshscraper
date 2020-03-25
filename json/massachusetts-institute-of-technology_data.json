@@ -1,0 +1,47 @@
+{
+  "institute_institute": {
+    "name": "Massachusetts Institute of Technology (MIT)",
+    "id": null,
+    "short_name": null,
+    "established_year": "1861",
+    "institute_type": "Private University",
+    "country_id": null,
+    "state_id": null,
+    "city_id": null,
+    "brochure": null
+  },
+  "institutes_institutecontactdetail": {
+    "website": "http://gradadmissions.mit.edu/about/contact",
+    "phone_nos": "617-324-6730",
+    "fax": null,
+    "email_address": "gradadmissions@mit.edu",
+    "main_address": "77 Massachusetts Ave, Cambridge, MA 02139, USA",
+    "latitude": "42.3601",
+    "longitude": "-71.0942"
+  },
+  "institutes_institutedetail": {
+    "number_of_programs": "26",
+    "campus_size": "166",
+    "no_of_international_students": "3,387",
+    "intnl_students_percent": "30.4 %",
+    "on_campus_hostel": "Available",
+    "hostel_fee": "8.5 Lakh",
+    "hostel_fee_currency_id": "INR",
+    "gender_ratio": null,
+    "student_faculty_ratio": "1 : 3.0",
+    "bachelors_masters_ratio": null
+  },
+  "institutes_instituteranking": {
+    "ranking_authority_id": "Bloomberg 2020 ",
+    "ranking_type_id": "U.S Best Business School 2020",
+    "rank": "7"
+  },
+  "institute_coursefee": {
+    "min_fee": "75",
+    "max_fee": "250",
+    "currency_id": "USD"
+  },
+  "institutes_institute_intake": {
+    "intake_id": "Fall"
+  }
+}

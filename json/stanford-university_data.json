@@ -1,0 +1,47 @@
+{
+  "institute_institute": {
+    "name": "Stanford University",
+    "id": null,
+    "short_name": null,
+    "established_year": "1891",
+    "institute_type": "Private University",
+    "country_id": null,
+    "state_id": null,
+    "city_id": null,
+    "brochure": null
+  },
+  "institutes_institutecontactdetail": {
+    "website": "https://gradadmissions.stanford.edu/applying/international-applicants",
+    "phone_nos": "+1-866-432-7472",
+    "fax": null,
+    "email_address": "gradadmissions@stanford.edu",
+    "main_address": "450 Serra Mall, Stanford, CA 94305, USA",
+    "latitude": "37.4275",
+    "longitude": "-122.1697"
+  },
+  "institutes_institutedetail": {
+    "number_of_programs": "27",
+    "campus_size": "8180",
+    "no_of_international_students": "4,351",
+    "intnl_students_percent": "24.6 %",
+    "on_campus_hostel": "Available",
+    "hostel_fee": "9.9 Lakh",
+    "hostel_fee_currency_id": "INR",
+    "gender_ratio": "1 : 0.75",
+    "student_faculty_ratio": "1 : 5.0",
+    "bachelors_masters_ratio": null
+  },
+  "institutes_instituteranking": {
+    "ranking_authority_id": "Bloomberg 2020 ",
+    "ranking_type_id": "U.S Best Business School 2020",
+    "rank": "1"
+  },
+  "institute_coursefee": {
+    "min_fee": "90",
+    "max_fee": "275",
+    "currency_id": "USD"
+  },
+  "institutes_institute_intake": {
+    "intake_id": "Fall"
+  }
+}

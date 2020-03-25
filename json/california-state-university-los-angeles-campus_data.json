@@ -1,0 +1,47 @@
+{
+  "institute_institute": {
+    "name": "California State University Los Angeles Campus (CSULA)",
+    "id": null,
+    "short_name": null,
+    "established_year": "1947",
+    "institute_type": "Public University",
+    "country_id": null,
+    "state_id": null,
+    "city_id": null,
+    "brochure": null
+  },
+  "institutes_institutecontactdetail": {
+    "website": "http://www.calstatela.edu/univ/admiss/contactus.php",
+    "phone_nos": "(323) 343-3901",
+    "fax": null,
+    "email_address": "admission@calstatela.edu",
+    "main_address": "5151 State University Drive\nLos Angeles, CA 90032 USA",
+    "latitude": null,
+    "longitude": null
+  },
+  "institutes_institutedetail": {
+    "number_of_programs": "23",
+    "campus_size": null,
+    "no_of_international_students": null,
+    "intnl_students_percent": null,
+    "on_campus_hostel": "Available",
+    "hostel_fee": "8.5 Lakh",
+    "hostel_fee_currency_id": "INR",
+    "gender_ratio": null,
+    "student_faculty_ratio": null,
+    "bachelors_masters_ratio": null
+  },
+  "institutes_instituteranking": {
+    "ranking_authority_id": "U.S. News & World Report 2020 ",
+    "ranking_type_id": "Best Regional Universities West Rankings",
+    "rank": "31"
+  },
+  "institute_coursefee": {
+    "min_fee": null,
+    "max_fee": null,
+    "currency_id": null
+  },
+  "institutes_institute_intake": {
+    "intake_id": "Fall"
+  }
+}

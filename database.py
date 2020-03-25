@@ -119,3 +119,7 @@ if __name__ == '__main__':
     conx.commit()
 
 
+"""
+create_table = 
+
+"""

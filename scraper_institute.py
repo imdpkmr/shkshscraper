@@ -10,6 +10,7 @@ def write_json(institute, university_name=""):
         outfile.write(json_object)
 
 def scrape_institute(url):
+    global institute
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
     contents = []
@@ -42,9 +43,15 @@ def scrape_institute(url):
 
     hostel = soup.find('div', attrs={"class": "Styled__OnCampusDiv-sc-1yl1nt-4 ipxyIR"})
     # print(hostel.p.text)
-    institute_details[hostel.label.text] = hostel.p.text
-    app_fee = soup.find('td', string="Application fees")
-    application_fees = app_fee.find_next_sibling('td').text.split(' ')
+
+    fee = {}
+    try:
+        institute_details[hostel.label.text] = hostel.p.text
+        app_fee = soup.find('td', string="Application fees")
+        application_fees = app_fee.find_next_sibling('td').text.split(' ')
+        fee.update({"currency_id": application_fees[0], "min_fee": application_fees[1], "max_fee": application_fees[3]})
+    except IndexError:
+        pass
 
     rankings = soup.find_all('div', attrs={"class": "Styled__RankingListBox-sc-132amsi-9 iVoSAn"})
     # for ranking in rankings:
@@ -60,13 +67,18 @@ def scrape_institute(url):
     soup.find('div', attrs={"class": "Styled__FindMoreCourseTitle-sc-1yl1nt-57 egsLwJ"}).span.text.split(' ')[0]
     # print(num_courses)
 
-    intake_month = soup.find_all('div', attrs={"class": "Styled__AdmissionDocumentdiv-sc-1yl1nt-41 dyvnIe"})[
-        5].label.text
+    intake_month = soup.find_all('div', attrs={"class": "Styled__AdmissionDocumentdiv-sc-1yl1nt-41 dyvnIe"})[5].label.text
     # print(intake_month)
 
-    lat_lng_a = soup.find('div', attrs={"class": "Styled__ContactUsMapDiv-sc-1yl1nt-11 byPnsn"})
-    lat_lng_url = lat_lng_a.find('a', href=True)['href']
-    lat_lng = lat_lng_url.split('/')[-1].split(',')
+    inst_contact={}
+    try:
+        lat_lng_a = soup.find('div', attrs={"class": "Styled__ContactUsMapDiv-sc-1yl1nt-11 byPnsn"})
+        lat_lng_url = lat_lng_a.find('a', href=True)['href']
+        # lat_lng = lat_lng_url.split('/')[-1].split(',')
+        inst_contact.update({"lat": lat_lng_url.split('/')[-1].split(',')[0]})
+        inst_contact.update({"lng": lat_lng_url.split('/')[-1].split(',')[1]})
+    except AttributeError as aerr:
+        print(aerr)
     # print(lat_lng)
 
     try:
@@ -88,8 +100,8 @@ def scrape_institute(url):
                 "fax": None,
                 "email_address": contacts[0].p.text,
                 "main_address": contacts[2].p.text.strip(),
-                "latitude": lat_lng[0],
-                "longitude": lat_lng[1],
+                "latitude": inst_contact.get("lat"),
+                "longitude": inst_contact.get("lng"),
             },
             "institutes_institutedetail": {
                 "number_of_programs": ''.join(filter(str.isdigit, num_courses)),
@@ -109,9 +121,9 @@ def scrape_institute(url):
                 "rank": ''.join(filter(str.isdigit, rank[2].p.strong.text)),
             },
             "institute_coursefee": {
-                "min_fee": application_fees[1],
-                "max_fee": application_fees[3],
-                "currency_id": application_fees[0],
+                "min_fee": fee.get("min_fee"),
+                "max_fee": fee.get("max_fee"),
+                "currency_id": fee.get("currency_id"),
             },
             "institutes_institute_intake": {
                 "intake_id": intake_month,
@@ -129,7 +141,8 @@ if  __name__ == "__main__":
     universities = ["https://studyabroad.shiksha.com/usa/universities/stanford-university",
                   "https://studyabroad.shiksha.com/usa/universities/arizona-state-university",
                   "https://studyabroad.shiksha.com/usa/universities/the-university-of-texas-at-dallas",
-                  "https://studyabroad.shiksha.com/usa/universities/massachusetts-institute-of-technology"]
+                  "https://studyabroad.shiksha.com/usa/universities/massachusetts-institute-of-technology",
+                    "https://studyabroad.shiksha.com/usa/universities/california-state-university-los-angeles-campus"]
 
     for university in universities:
         print('scraping '+university)

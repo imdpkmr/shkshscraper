@@ -42,84 +42,25 @@ class DBQueries:
             if cursor:
                 cursor.close()
 
-    # def insert_lists_files(self, connection, orig, inputname):
-    #     for org, ip in zip(orig, inputname):
-    #         stmt = f"INSERT INTO {TABLE_NAME}(Original_File_Name,Input_File_Name) VALUES('{org}', '{ip}')"
-    #         try:
-    #             cursor=connection.cursor()
-    #             cursor.execute(stmt)
-    #             print(f"{ip} inserted")
-    #         except Error as e:
-    #             print('Error inserting file name', e)
-    #         finally:
-    #             cursor.close()
-
-    # def insert_file_names(self, connection, orgFileName, inputFileName):
-    #     stmt = f"INSERT INTO {TABLE_NAME}(Original_File_Name,Input_File_Name) VALUES('{orgFileName}', '{inputFileName}')"
-    #     try:
-    #         cursor = connection.cursor()
-    #         cursor.execute(stmt)
-    #         print('file names inserted')
-    #     except Error as e:
-    #         print('Error inserting file names',e)
-    #     finally:
-    #         cursor.close()
-
-    # def update_status(self, connection, inputFileName, outputFileName, status, ssName=""):
-    #     """update_status() method take DB reference, testID, outputFile Name, status of test cse, and screenshot name and updates the record """
-    #     stmt = f"UPDATE {TABLE_NAME} SET Run_Time= CURRENT_TIMESTAMP() ,Output_File_Name='{outputFileName}',Test_Status='{status}', Error_Screenshot='{ssName}' WHERE Input_File_Name LIKE '{inputFileName}' "
-    #     try:
-    #         cursor = connection.cursor()
-    #         cursor.execute(stmt)
-    #         print('test status updated')
-    #     except Error as e:
-    #         print('Error updating status', e)
-    #     finally:
-    #         cursor.close()
-
-
-    # def todays_report_csv(self,connection, query_date=None):
-    #     """take date as arg, default = Today, and return a list of lists containing all the records
-    #         input file names have date in the format of yyyy-mm-dd in the query"""
-    #     report = list()
-    #     if query_date is None:
-    #         query_date = date.today()
-    #     query_date = str(query_date)
-    #     stmt=f"SELECT * FROM `{TABLE_NAME}` WHERE Input_File_Name LIKE '%{query_date}%'"
-    #     try:
-    #         cursor = connection.cursor()
-    #         cursor.execute(stmt)
-    #         results = cursor.fetchall()
-    #         for result in results:
-    #             result = list(result)
-    #             if result[5] == 1:
-    #                 result[5] = "pass"
-    #             else:
-    #                 result[5] = "fail"
-    #             report.append(result)
-    #     except Error as e:
-    #         print('error generating csv report of today\'s test runs')
-    #     finally:
-    #         if cursor:
-    #             cursor.close()
-    #         print(report)
-    #         return report
 
 
 
 if __name__ == '__main__':
-    database = DBQueries() #create object of class to call it's methods
-    conx = database.connect() #get connector of the database for inserting and updating the records
+    database = DBQueries()
+    conx = database.connect()
+    queries = [
+        f"CREATE TABLE IF NOT EXISTS institute_institute(name VARCHAR(100), id INT AUTO_INCREMENT PRIMARY KEY, short_name VARCHAR(50), estalished_year VARCHAR(5), institute_type VARCHAR(22), country_id VARCHAR(22), state_id VARCHAR(22), state_id VARCHAR(22), city_id VARCHAR(22), brochure VARCHAR(22) )",
+        f"CREATE TABLE IF NOT EXISTS institutes_institutecontactdetail(website VARCHAR(50), phone_nos VARCHAR(15), fax VARCHAR(15), email_address VARCHAR(50), main_address VARCHAR(200), latitude VARCHAR(50), longitude VARCHAR(50))",
+        f"CREATE TABLE IF NOT EXISTS institutes_institutedetail(number_of_programs VARCHAR(20), campus_size VARCHAR(20), no_of_international_students VARCHAR(20), intnl_students_percent VARCHAR(20), on_campus_hostel VARCHAR(20), hostel_fee VARCHAR(20), hostel_fee_currency_id VARCHAR(20), gender_ratio VARCHAR(20), student_faculty_ratio VARCHAR(20), bachelors_masters_ratio VARCHAR(20))",
+        f"CREATE TABLE IF NOT EXISTS institutes_instituteranking(ranking_authority_id VARCHAR(20), ranking_type_id VARCHAR(20), rank VARCHAR(20))",
+        f"CREATE TABLE IF NOT EXISTS institute_coursefee(min_fee VARCHAR(20), max_fee VARCHAR(20), currency_id VARCHAR(20))"
+        f"CREATE TABLE IF NOT EXISTS institutes_institute_intake(intake_id VARCHAR(20))"
+    ]
     # database._create_table(conx)
-    # list1=['a','b','c']
-    # list2=['a11','b11','c11']
-    # database.insert_file_names(connection=conx, orgFileName="testfile1", inputFileName="inputtestfile212020-03-13")
-    # database.update_status(connection=conx, inputFileName="inputfile2020-03-17", outputFileName="testoutput112020-03-17", status=0, ssName="testss11")
-    # database.todays_report_csv(connection=conx,query_date='2020-03-13')
     conx.commit()
 
 
 """
-create_table = 
+create_table = f""
 
 """

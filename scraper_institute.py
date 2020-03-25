@@ -15,29 +15,54 @@ def scrape_institute(url):
     soup = BeautifulSoup(response.content, "html.parser")
     contents = []
 
-    title = soup.find('h1', attrs={"class": "H1-sc-1225uyb-0 KmIux"}).text
-    # print(title)
-    _, institute_type, established_year = soup.find('div', attrs={
-        "class": "Styled__UnivLinks-sc-132amsi-4 gXZkCE"}).text.split('|')
-    # print(institute_type)
-    established_year = ''.join(filter(str.isdigit, established_year))
-    # print(established_year)
-
-    contacts = soup.find_all('div', attrs={"class": "Styled__ContactUsDiv-sc-1yl1nt-10 cNAOeO"})
-    for contact in contacts:
+    institute = {}
+    try:
+        title = soup.find('h1', attrs={"class": "H1-sc-1225uyb-0 KmIux"}).text
+        # print(title)
+        _, institute_type, established_year_ = soup.find('div', attrs={
+            "class": "Styled__UnivLinks-sc-132amsi-4 gXZkCE"}).text.split('|')
+        # print(institute_type)
+        established_year = ''.join(filter(str.isdigit, established_year_))
+        # print(established_year)
+        institute.update({
+            "name": title,
+            "established_year": established_year,
+            "institute_type": institute_type,
+        })
+    except AttributeError:
         pass
-        # print(contact.p.text)
+    except IndexError:
+        pass
+
+    contact_details = {}
+    try:
+        contacts = soup.find_all('div', attrs={"class": "Styled__ContactUsDiv-sc-1yl1nt-10 cNAOeO"})
+        contact_details.update({
+            "website": contacts[3].p.text,
+            "phone_nos": contacts[1].p.text,
+            "fax": None,
+            "email_address": contacts[0].p.text,
+            "main_address": contacts[2].p.text.strip(),
+        })
+    except IndexError:
+        pass
+
     data = []
     institute_details = {}
-    inst_details_table = soup.find('table', attrs={"class": "Styled__TableStyle-sc-10ucg51-0 hfBVJr"})
-    inst_details_body = inst_details_table.find('tbody')
-    inst_details_rows = inst_details_body.findAll('tr')
-    for row in inst_details_rows:
-        cols = row.find_all('td')
-        cols = [ele.text.strip() for ele in cols]
-        data.append([ele for ele in cols if ele])
-    for record in data:
-        institute_details[record[0]] = record[1]
+    try:
+        inst_details_table = soup.find('table', attrs={"class": "Styled__TableStyle-sc-10ucg51-0 hfBVJr"})
+        inst_details_body = inst_details_table.find('tbody')
+        inst_details_rows = inst_details_body.findAll('tr')
+        for row in inst_details_rows:
+            cols = row.find_all('td')
+            cols = [ele.text.strip() for ele in cols]
+            data.append([ele for ele in cols if ele])
+        for record in data:
+            institute_details[record[0]] = record[1]
+    except IndexError:
+        pass
+    except AttributeError:
+        pass
 
     # print(institute_details)
 
@@ -49,14 +74,22 @@ def scrape_institute(url):
         institute_details[hostel.label.text] = hostel.p.text
         app_fee = soup.find('td', string="Application fees")
         application_fees = app_fee.find_next_sibling('td').text.split(' ')
-        fee.update({"currency_id": application_fees[0], "min_fee": application_fees[1], "max_fee": application_fees[3]})
+        fee.update({"currency_id": application_fees[0],
+                    "min_fee": application_fees[1],
+                    "max_fee": application_fees[3]})
     except IndexError:
         pass
 
-    rankings = soup.find_all('div', attrs={"class": "Styled__RankingListBox-sc-132amsi-9 iVoSAn"})
-    # for ranking in rankings:
-    #     print(ranking.text)
-    rank = rankings[0].find_all('div')
+    rank = {}
+    try:
+        rankings = soup.find_all('div', attrs={"class": "Styled__RankingListBox-sc-132amsi-9 iVoSAn"})
+        ranking = rankings[0].find_all('div')
+        rank.update({"ranking_authority_id": ranking[0].text,
+                     "ranking_type_id": ranking[2].label.text,
+                     "rank": ''.join(filter(str.isdigit, ranking[2].p.strong.text))})
+    except IndexError:
+        pass
+
     # for r in rank:
     #     print(r.text)
     # print(rank[0].text)
@@ -84,22 +117,22 @@ def scrape_institute(url):
     try:
         institute = {
             "institute_institute": {
-                "name": title,
+                "name": institute.get("name"),
                 "id": None,
                 "short_name": None,
-                "established_year": established_year,
-                "institute_type": institute_type,
+                "established_year": institute.get("established_year"),
+                "institute_type": institute.get("institute_type"),
                 "country_id": None,
                 "state_id": None,
                 "city_id": None,
                 "brochure": None,
             },
             "institutes_institutecontactdetail": {
-                "website": contacts[3].p.text,
-                "phone_nos": contacts[1].p.text,
-                "fax": None,
-                "email_address": contacts[0].p.text,
-                "main_address": contacts[2].p.text.strip(),
+                "website": contact_details.get("website"),
+                "phone_nos": contact_details.get("phone_nos"),
+                "fax": contact_details.get("fax"),
+                "email_address": contact_details.get("email_address"),
+                "main_address": contact_details.get("main_address"),
                 "latitude": inst_contact.get("lat"),
                 "longitude": inst_contact.get("lng"),
             },
@@ -116,9 +149,9 @@ def scrape_institute(url):
                 "bachelors_masters_ratio": institute_details.get("UG/PG Course Ratio"),
             },
             "institutes_instituteranking": {
-                "ranking_authority_id": rank[0].text,
-                "ranking_type_id": rank[2].label.text,
-                "rank": ''.join(filter(str.isdigit, rank[2].p.strong.text)),
+                "ranking_authority_id": rank.get("ranking_authority_id"),
+                "ranking_type_id": rank.get("ranking_type_id"),
+                "rank": rank.get("rank"),
             },
             "institute_coursefee": {
                 "min_fee": fee.get("min_fee"),
@@ -142,7 +175,7 @@ if  __name__ == "__main__":
                   "https://studyabroad.shiksha.com/usa/universities/arizona-state-university",
                   "https://studyabroad.shiksha.com/usa/universities/the-university-of-texas-at-dallas",
                   "https://studyabroad.shiksha.com/usa/universities/massachusetts-institute-of-technology",
-                    "https://studyabroad.shiksha.com/usa/universities/california-state-university-los-angeles-campus"]
+                  "https://studyabroad.shiksha.com/usa/universities/california-state-university-los-angeles-campus"]
 
     for university in universities:
         print('scraping '+university)

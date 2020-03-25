@@ -1,19 +1,39 @@
-from bs4 import BeautifulSoup
-import requests
 import json
+
+import requests
+from bs4 import BeautifulSoup
+
+from shiksha.database import DBQueries
 
 
 def write_json(institute, university_name=""):
     json_object = json.dumps(institute, indent=2)
-    filename = "json/"+university_name+"_data.json"
+    filename = "json/" + university_name + "_data.json"
     with open(filename, "w") as outfile:
         outfile.write(json_object)
 
+
+def ins_query_maker(tablename, rowdict):
+    keys = tuple(rowdict)
+    dictsize = len(rowdict)
+    sql = ''
+    for i in range(dictsize):
+        if (type(rowdict[keys[i]]).__name__ == 'str'):
+            sql += "'" + str(rowdict[keys[i]]) + "'"
+        else:
+            sql += str(rowdict[keys[i]])
+        if (i < dictsize - 1):
+            sql += ', '
+    columns = ', '.join(keys)
+    query = "insert into " + str(tablename) + " (" + columns + ") values(" + sql + ")"
+    # print(query) # for demo purposes we do this
+    return (query)  # in real code we do this
+
+
 def scrape_institute(url):
-    global institute
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
-    contents = []
+    insert_queries = []
 
     institute = {}
     try:
@@ -59,6 +79,14 @@ def scrape_institute(url):
             data.append([ele for ele in cols if ele])
         for record in data:
             institute_details[record[0]] = record[1]
+        num_courses = \
+        soup.find('div', attrs={"class": "Styled__FindMoreCourseTitle-sc-1yl1nt-57 egsLwJ"}).span.text.split(' ')[0]
+        number_of_programs = ''.join(filter(str.isdigit, num_courses))
+        institute_details.update({"number_of_programs": number_of_programs})
+        # print(num_courses)
+        hostel = soup.find('div', attrs={"class": "Styled__OnCampusDiv-sc-1yl1nt-4 ipxyIR"})
+        institute_details[hostel.label.text] = hostel.p.text
+        # print(hostel.p.text)
     except IndexError:
         pass
     except AttributeError:
@@ -66,12 +94,8 @@ def scrape_institute(url):
 
     # print(institute_details)
 
-    hostel = soup.find('div', attrs={"class": "Styled__OnCampusDiv-sc-1yl1nt-4 ipxyIR"})
-    # print(hostel.p.text)
-
     fee = {}
     try:
-        institute_details[hostel.label.text] = hostel.p.text
         app_fee = soup.find('td', string="Application fees")
         application_fees = app_fee.find_next_sibling('td').text.split(' ')
         fee.update({"currency_id": application_fees[0],
@@ -87,6 +111,7 @@ def scrape_institute(url):
         rank.update({"ranking_authority_id": ranking[0].text,
                      "ranking_type_id": ranking[2].label.text,
                      "rank": ''.join(filter(str.isdigit, ranking[2].p.strong.text))})
+
     except IndexError:
         pass
 
@@ -96,14 +121,11 @@ def scrape_institute(url):
     # print(rank[2].label.text)
     # print(rank[2].p.strong.text)
 
-    num_courses = \
-    soup.find('div', attrs={"class": "Styled__FindMoreCourseTitle-sc-1yl1nt-57 egsLwJ"}).span.text.split(' ')[0]
-    # print(num_courses)
-
-    intake_month = soup.find_all('div', attrs={"class": "Styled__AdmissionDocumentdiv-sc-1yl1nt-41 dyvnIe"})[5].label.text
+    intake_month = soup.find_all('div', attrs={"class": "Styled__AdmissionDocumentdiv-sc-1yl1nt-41 dyvnIe"})[
+        5].label.text
     # print(intake_month)
 
-    inst_contact={}
+    inst_contact = {}
     try:
         lat_lng_a = soup.find('div', attrs={"class": "Styled__ContactUsMapDiv-sc-1yl1nt-11 byPnsn"})
         lat_lng_url = lat_lng_a.find('a', href=True)['href']
@@ -137,7 +159,7 @@ def scrape_institute(url):
                 "longitude": inst_contact.get("lng"),
             },
             "institutes_institutedetail": {
-                "number_of_programs": ''.join(filter(str.isdigit, num_courses)),
+                "number_of_programs": institute_details.get("number_of_programs"),
                 "campus_size": institute_details.get("Size of Campus in acres"),
                 "no_of_international_students": institute_details.get("Total International Students"),
                 "intnl_students_percent": institute_details.get("% International Students"),
@@ -162,6 +184,16 @@ def scrape_institute(url):
                 "intake_id": intake_month,
             }
         }
+        # print(institute["institutes_instituteranking"])
+        insert_queries.append(ins_query_maker("institute_institute", institute["institute_institute"]))
+        insert_queries.append(
+            ins_query_maker("institutes_institutecontactdetail", institute["institutes_institutecontactdetail"]))
+        insert_queries.append(ins_query_maker("institutes_institutedetail", institute["institutes_institutedetail"]))
+        insert_queries.append(ins_query_maker("institutes_instituteranking", institute["institutes_instituteranking"]))
+        insert_queries.append(ins_query_maker("institute_coursefee", institute["institute_coursefee"]))
+        insert_queries.append(f"insert into institutes_institute_intake(intake_id) values('{institute.get('institutes_institute_intake',{}).get('intake_id')}')")
+
+        return insert_queries
     except KeyError:
         print('key: value not found')
     except ValueError as str_err:
@@ -170,25 +202,26 @@ def scrape_institute(url):
         write_json(institute, url.split('/')[-1])
 
 
-if  __name__ == "__main__":
+if __name__ == "__main__":
     universities = ["https://studyabroad.shiksha.com/usa/universities/stanford-university",
-                  "https://studyabroad.shiksha.com/usa/universities/arizona-state-university",
-                  "https://studyabroad.shiksha.com/usa/universities/the-university-of-texas-at-dallas",
-                  "https://studyabroad.shiksha.com/usa/universities/massachusetts-institute-of-technology",
-                  "https://studyabroad.shiksha.com/usa/universities/california-state-university-los-angeles-campus"]
+                    "https://studyabroad.shiksha.com/usa/universities/arizona-state-university",
+                    "https://studyabroad.shiksha.com/usa/universities/the-university-of-texas-at-dallas",
+                    "https://studyabroad.shiksha.com/usa/universities/massachusetts-institute-of-technology",
+                    "https://studyabroad.shiksha.com/usa/universities/california-state-university-los-angeles-campus"]
 
-    for university in universities:
-        print('scraping '+university)
-        scrape_institute(university)
-
-
-
-
-
-
-
-
-
+    database = DBQueries()
+    conx = database.connect()
+    try:
+        for university in universities:
+            print('scraping ' + university)
+            insert_queries = scrape_institute(university)
+            for query in insert_queries:
+                query = query.replace("None", "null")
+                database.insert_record(conx, query)
+                # print(query)
+    finally:
+        pass
+    conx.commit()
 
 # print(soup.find('div', attrs={"class": "wiki"}).text)
 # print(soup.find('table', attrs={"class": "Styled__TableStyle-sc-10ucg51-0 hfBVJr"}).text)
@@ -200,8 +233,8 @@ if  __name__ == "__main__":
 #     print('TABLE DETAILS ' * index)
 #     rows = table.findAll('tr')
 #     for row in rows:
-        # print(row.text)
+# print(row.text)
 # table_data = [[cell.text for cell in row("td")] for row in BeautifulSoup(response.content, "html.parser")("tr")]
 # print(table_data)
 # for data in table_data:
-    # print(data)
+# print(data)

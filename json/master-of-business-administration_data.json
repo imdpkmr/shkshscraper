@@ -1,0 +1,17 @@
+{
+  "insinstitutes_institutecourse": {
+    "department": "NA",
+    "degree_id": "Manual",
+    "stream_id": "Manual",
+    "name": "Master of Business Administration",
+    "level_id": "Masters Program"
+  },
+  "institutes_institutecoursecommondetail": {
+    "mode": "NA",
+    "course_duration": "2",
+    "duration_type": "Years",
+    "fee": "51,80,096",
+    "fee_currency_id": "INR"
+  },
+  "institutes_institutecourse_specialization": "Manual"
+}

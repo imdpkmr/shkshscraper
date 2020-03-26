@@ -1,0 +1,17 @@
+{
+  "insinstitutes_institutecourse": {
+    "department": "NA",
+    "degree_id": "Manual",
+    "stream_id": "Manual",
+    "name": null,
+    "level_id": null
+  },
+  "institutes_institutecoursecommondetail": {
+    "mode": "NA",
+    "course_duration": null,
+    "duration_type": null,
+    "fee": null,
+    "fee_currency_id": null
+  },
+  "institutes_institutecourse_specialization": "Manual"
+}

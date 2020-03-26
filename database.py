@@ -7,18 +7,17 @@ from mysql.connector import Error
 DB_HOST="localhost"
 DB_USER="root"
 DB_PASSWORD="root"
-DB_NAME="Institute"
 
 
 
 class DBQueries:
 
     """Store MYSQL database credentials in locals.py file"""
-    def connect(self):
+    def connect(self, db_name):
         conn=None
         try:
             # check_database(DB_NAME)
-            conn = mysql.connector.connect(host=DB_HOST, database=DB_NAME, user=DB_USER, password=DB_PASSWORD)
+            conn = mysql.connector.connect(host=DB_HOST, database=db_name, user=DB_USER, password=DB_PASSWORD)
             if conn.is_connected():
                 pass
                 print('Connected to MySQL database')
@@ -58,16 +57,7 @@ class DBQueries:
 if __name__ == '__main__':
     database = DBQueries()
     conx = database.connect()
-    queries = [
-        f"CREATE TABLE institute_institute(name VARCHAR(100), id INT AUTO_INCREMENT PRIMARY KEY, short_name VARCHAR(50), established_year VARCHAR(5), institute_type VARCHAR(22), country_id VARCHAR(22), state_id VARCHAR(22), city_id VARCHAR(22), brochure VARCHAR(22) )",
-        f"CREATE TABLE institutes_institutecontactdetail(website VARCHAR(500), phone_nos VARCHAR(15), fax VARCHAR(15), email_address VARCHAR(50), main_address VARCHAR(200), latitude VARCHAR(50), longitude VARCHAR(50))",
-        f"CREATE TABLE institutes_institutedetail(number_of_programs VARCHAR(20), campus_size VARCHAR(20), no_of_international_students VARCHAR(20), intnl_students_percent VARCHAR(20), on_campus_hostel VARCHAR(20), hostel_fee VARCHAR(20), hostel_fee_currency_id VARCHAR(20), gender_ratio VARCHAR(20), student_faculty_ratio VARCHAR(20), bachelors_masters_ratio VARCHAR(20))",
-        f"CREATE TABLE institutes_instituteranking(ranking_authority_id VARCHAR(100), ranking_type_id VARCHAR(100), rank VARCHAR(20))",
-        f"CREATE TABLE institute_coursefee(min_fee VARCHAR(20), max_fee VARCHAR(20), currency_id VARCHAR(20))",
-        f"CREATE TABLE institutes_institute_intake(intake_id VARCHAR(20))"
-    ]
-    for query in queries:
-        database._create_table(conx, query)
+
     conx.commit()
 
 

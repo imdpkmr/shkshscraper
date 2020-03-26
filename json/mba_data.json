@@ -3,15 +3,15 @@
     "department": "NA",
     "degree_id": "Manual",
     "stream_id": "Manual",
-    "name": null,
-    "level_id": null
+    "name": "MBA",
+    "level_id": "Masters Program"
   },
   "institutes_institutecoursecommondetail": {
     "mode": "NA",
-    "course_duration": null,
-    "duration_type": null,
-    "fee": null,
-    "fee_currency_id": null
+    "course_duration": "2",
+    "duration_type": "Years",
+    "fee": "52,06,896",
+    "fee_currency_id": "INR"
   },
   "institutes_institutecourse_specialization": "Manual"
 }

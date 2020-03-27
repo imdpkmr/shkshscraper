@@ -31,7 +31,7 @@ def ins_query_maker(tablename, rowdict):
     return (query)  # in real code we do this
 
 
-def scrape_institute(url):
+def scrape_institute(url, id):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
     insert_queries = []
@@ -141,7 +141,7 @@ def scrape_institute(url):
         institute = {
             "institute_institute": {
                 "name": institute.get("name"),
-                "id": None,
+                "id": id,
                 "short_name": None,
                 "established_year": institute.get("established_year"),
                 "institute_type": institute.get("institute_type"),
@@ -151,6 +151,7 @@ def scrape_institute(url):
                 "brochure": None,
             },
             "institutes_institutecontactdetail": {
+                "id": id,
                 "website": contact_details.get("website"),
                 "phone_nos": contact_details.get("phone_nos"),
                 "fax": contact_details.get("fax"),
@@ -160,6 +161,7 @@ def scrape_institute(url):
                 "longitude": inst_contact.get("lng"),
             },
             "institutes_institutedetail": {
+                "id": id,
                 "number_of_programs": institute_details.get("number_of_programs"),
                 "campus_size": institute_details.get("Size of Campus in acres"),
                 "no_of_international_students": institute_details.get("Total International Students"),
@@ -172,27 +174,29 @@ def scrape_institute(url):
                 "bachelors_masters_ratio": institute_details.get("UG/PG Course Ratio"),
             },
             "institutes_instituteranking": {
+                "id": id,
                 "ranking_authority_id": rank.get("ranking_authority_id"),
                 "ranking_type_id": rank.get("ranking_type_id"),
                 "rank": rank.get("rank"),
             },
             "institute_coursefee": {
+                "id": id,
                 "min_fee": fee.get("min_fee"),
                 "max_fee": fee.get("max_fee"),
                 "currency_id": fee.get("currency_id"),
             },
             "institutes_institute_intake": {
+                "id": id,
                 "intake_id": intake_month,
             }
         }
         # print(institute["institutes_instituteranking"])
         insert_queries.append(ins_query_maker("institute_institute", institute["institute_institute"]))
-        insert_queries.append(
-            ins_query_maker("institutes_institutecontactdetail", institute["institutes_institutecontactdetail"]))
+        insert_queries.append(ins_query_maker("institutes_institutecontactdetail", institute["institutes_institutecontactdetail"]))
         insert_queries.append(ins_query_maker("institutes_institutedetail", institute["institutes_institutedetail"]))
         insert_queries.append(ins_query_maker("institutes_instituteranking", institute["institutes_instituteranking"]))
         insert_queries.append(ins_query_maker("institute_coursefee", institute["institute_coursefee"]))
-        insert_queries.append(f"insert into institutes_institute_intake(intake_id) values('{institute.get('institutes_institute_intake',{}).get('intake_id')}')")
+        insert_queries.append(ins_query_maker("institutes_institute_intake", institute["institutes_institute_intake"]))
 
         return insert_queries
     except KeyError:
@@ -200,7 +204,8 @@ def scrape_institute(url):
     except ValueError as str_err:
         print('error while parsing string' + str_err.message)
     finally:
-        write_json(institute, url.split('/')[-1])
+        pass
+        # write_json(institute, url.split('/')[-1])
 
 
 if __name__ == "__main__":
@@ -211,25 +216,32 @@ if __name__ == "__main__":
                     "https://studyabroad.shiksha.com/usa/universities/california-state-university-los-angeles-campus"]
 
     database = DBQueries()
+    queries = [
+        f"CREATE TABLE IF NOT EXISTS institute_institute( id INT PRIMARY KEY, name VARCHAR(100), short_name VARCHAR(50), established_year VARCHAR(5), institute_type VARCHAR(22), country_id VARCHAR(22), state_id VARCHAR(22), city_id VARCHAR(22), brochure VARCHAR(22))",
+        f"CREATE TABLE IF NOT EXISTS institute_coursefee(id INT, min_fee VARCHAR(20), max_fee VARCHAR(20), currency_id VARCHAR(20), FOREIGN KEY (id) REFERENCES institute_institute(id))",
+        f"CREATE TABLE IF NOT EXISTS institutes_institutecontactdetail(id INT, website VARCHAR(500), phone_nos VARCHAR(15), fax VARCHAR(15), email_address VARCHAR(50), main_address VARCHAR(200), latitude VARCHAR(50), longitude VARCHAR(50), FOREIGN KEY (id) REFERENCES institute_institute(id))" ,
+        f"CREATE TABLE IF NOT EXISTS institutes_institutedetail(id INT, number_of_programs VARCHAR(20), campus_size VARCHAR(20), no_of_international_students VARCHAR(20), intnl_students_percent VARCHAR(20), on_campus_hostel VARCHAR(20), hostel_fee VARCHAR(20), hostel_fee_currency_id VARCHAR(20), gender_ratio VARCHAR(20), student_faculty_ratio VARCHAR(20), bachelors_masters_ratio VARCHAR(20), FOREIGN KEY (id) REFERENCES institute_institute(id))",
+        f"CREATE TABLE IF NOT EXISTS institutes_instituteranking(id INT, ranking_authority_id VARCHAR(100), ranking_type_id VARCHAR(100), rank VARCHAR(20), FOREIGN KEY (id) REFERENCES institute_institute(id))",
+        f"CREATE TABLE IF NOT EXISTS institutes_institute_intake(id INT, intake_id VARCHAR(20), FOREIGN KEY (id) REFERENCES institute_institute(id))"
+    ]
     conx = database.connect("Institute")
-    # queries = [
-    #     f"CREATE TABLE institute_institute(name VARCHAR(100), id INT AUTO_INCREMENT PRIMARY KEY, short_name VARCHAR(50), established_year VARCHAR(5), institute_type VARCHAR(22), country_id VARCHAR(22), state_id VARCHAR(22), city_id VARCHAR(22), brochure VARCHAR(22) )",
-    #     f"CREATE TABLE institutes_institutecontactdetail(website VARCHAR(500), phone_nos VARCHAR(15), fax VARCHAR(15), email_address VARCHAR(50), main_address VARCHAR(200), latitude VARCHAR(50), longitude VARCHAR(50))",
-    #     f"CREATE TABLE institutes_institutedetail(number_of_programs VARCHAR(20), campus_size VARCHAR(20), no_of_international_students VARCHAR(20), intnl_students_percent VARCHAR(20), on_campus_hostel VARCHAR(20), hostel_fee VARCHAR(20), hostel_fee_currency_id VARCHAR(20), gender_ratio VARCHAR(20), student_faculty_ratio VARCHAR(20), bachelors_masters_ratio VARCHAR(20))",
-    #     f"CREATE TABLE institutes_instituteranking(ranking_authority_id VARCHAR(100), ranking_type_id VARCHAR(100), rank VARCHAR(20))",
-    #     f"CREATE TABLE institute_coursefee(min_fee VARCHAR(20), max_fee VARCHAR(20), currency_id VARCHAR(20))",
-    #     f"CREATE TABLE institutes_institute_intake(intake_id VARCHAR(20))"
-    # ]
-    # for query in queries:
-    #     database._create_table(conx, query)
+    for query in queries:
+        database._create_table(conx, query)
+    cursor = conx.cursor()
+    cursor.execute("select id from institute_institute")
+    id = cursor.fetchall()[-1][0]
+    # print(id)
+    cursor.close()
 
     try:
         for university in universities:
             print('scraping ' + university)
-            insert_queries = scrape_institute(university)
+            id = id + 1
+            insert_queries = scrape_institute(university, id)
             for query in insert_queries:
                 database.insert_record(conx, query)
                 # print(query)
+
     except ConnectionError:
         pass
     finally:

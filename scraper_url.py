@@ -48,7 +48,7 @@ if __name__ == "__main__":
     ]
     database = DBQueries()
     conx = database.connect("Institute")
-    create_queries = f"CREATE TABLE IF NOT EXISTS urls(id INT PRIMARY KEY AUTO_INCREMENT, url VARCHAR(500))"
+    create_queries = f"CREATE TABLE IF NOT EXISTS institute_urls(id INT PRIMARY KEY AUTO_INCREMENT, institute_url VARCHAR(500))"
     database._create_table(conx, create_queries)
 
     for url in urls:
@@ -56,7 +56,7 @@ if __name__ == "__main__":
         urls = scrape_url(url)
         for u in urls:
             pass
-            query = f"INSERT INTO urls(url) VALUES('{u}')"
+            query = f"INSERT INTO institute_urls(institute_url) VALUES('{u}')"
             database.insert_record(conx, query)
 
     conx.commit()

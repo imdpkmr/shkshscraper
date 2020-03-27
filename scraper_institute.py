@@ -31,7 +31,7 @@ def ins_query_maker(tablename, rowdict):
     return (query)  # in real code we do this
 
 
-def scrape_institute(url, id):
+def scrape_institute(url, id=0):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
     insert_queries = []
@@ -60,8 +60,10 @@ def scrape_institute(url, id):
     contact_details = {}
     try:
         contacts = soup.find_all('div', attrs={"class": "Styled__ContactUsDiv-sc-1yl1nt-10 cNAOeO"})
+        # for c in contacts:
+        #     print(c)
         contact_details.update({
-            "website": contacts[3].p.text,
+            "website": contacts[3].p.a['href'],
             "phone_nos": contacts[1].p.text,
             "fax": None,
             "email_address": contacts[0].p.text,
@@ -156,6 +158,7 @@ def scrape_institute(url, id):
     try:
         institute = {
             "institute_institute": {
+                "url":url,
                 "name": institute.get("name"),
                 "id": id,
                 "short_name": None,
@@ -233,7 +236,7 @@ if __name__ == "__main__":
 
     database = DBQueries()
     queries = [
-        f"CREATE TABLE IF NOT EXISTS institute_institute( id INT PRIMARY KEY, name VARCHAR(100), short_name VARCHAR(50), established_year VARCHAR(5), institute_type VARCHAR(200), country_id VARCHAR(22), state_id VARCHAR(22), city_id VARCHAR(22), brochure VARCHAR(22))",
+        f"CREATE TABLE IF NOT EXISTS institute_institute( id INT PRIMARY KEY, url VARCHAR(200) UNIQUE NOT NULL,name VARCHAR(100), short_name VARCHAR(50), established_year VARCHAR(5), institute_type VARCHAR(200), country_id VARCHAR(22), state_id VARCHAR(22), city_id VARCHAR(22), brochure VARCHAR(22))",
         f"CREATE TABLE IF NOT EXISTS institute_coursefee(id INT, min_fee VARCHAR(20), max_fee VARCHAR(20), currency_id VARCHAR(20), FOREIGN KEY (id) REFERENCES institute_institute(id))",
         f"CREATE TABLE IF NOT EXISTS institutes_institutecontactdetail(id INT, website VARCHAR(500), phone_nos VARCHAR(100), fax VARCHAR(15), email_address VARCHAR(50), main_address VARCHAR(200), latitude VARCHAR(50), longitude VARCHAR(50), FOREIGN KEY (id) REFERENCES institute_institute(id))" ,
         f"CREATE TABLE IF NOT EXISTS institutes_institutedetail(id INT, number_of_programs VARCHAR(20), campus_size VARCHAR(20), no_of_international_students VARCHAR(20), intnl_students_percent VARCHAR(20), on_campus_hostel VARCHAR(20), hostel_fee VARCHAR(20), hostel_fee_currency_id VARCHAR(20), gender_ratio VARCHAR(20), student_faculty_ratio VARCHAR(20), bachelors_masters_ratio VARCHAR(20), FOREIGN KEY (id) REFERENCES institute_institute(id))",
@@ -257,6 +260,8 @@ if __name__ == "__main__":
         universities = cursor.fetchall()
         print(len(universities))
         cursor.close()
+
+        q = scrape_institute("https://studyabroad.shiksha.com/usa/universities/texas-tech-university")
 
         for uni in universities:
             university = str(uni[0])

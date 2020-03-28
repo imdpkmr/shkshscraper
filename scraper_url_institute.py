@@ -18,7 +18,7 @@ def scrape_url(p_url):
     urls = []
     for page in range(number_pages):
         page_url = p_url+"-"+str(page)
-        print(page_url)
+        # print(page_url)
         response = requests.get(page_url)
         soup = BeautifulSoup(response.content, "html.parser")
         links = soup.find_all('div', attrs={"class": "tuple-title"})
@@ -31,27 +31,40 @@ def scrape_url(p_url):
     return urls
 
 if __name__ == "__main__":
-    urls = ["https://studyabroad.shiksha.com/usa/be-btech-colleges-dc",
-        "https://studyabroad.shiksha.com/usa/mba-colleges-dc",
-        "https://studyabroad.shiksha.com/usa/be-btech-colleges-dc",
-        "https://studyabroad.shiksha.com/usa/bba-colleges-dc",
-        "https://studyabroad.shiksha.com/usa/bsc-colleges-dc",
-        "https://studyabroad.shiksha.com/usa/march-colleges-dc",
-        "https://studyabroad.shiksha.com/usa/mim-colleges-dc",
-        "https://studyabroad.shiksha.com/usa/ma-colleges-dc",
-        "https://studyabroad.shiksha.com/usa/mem-colleges-dc"
+    urls = [
+        "https://studyabroad.shiksha.com/certificate-diploma-in-engineering-in-abroad-cl1240",
+        "https://studyabroad.shiksha.com/certificate-diploma-in-business-in-abroad-cl1239",
+        "https://studyabroad.shiksha.com/certificate-diploma-in-computers-in-abroad-cl1241",
+        "https://studyabroad.shiksha.com/bachelors-in-media-courses-in-abroad-sl1325",
+        "https://studyabroad.shiksha.com/bachelors-in-fashion-design-courses-in-abroad-sl1331",
+        "https://studyabroad.shiksha.com/bachelors-of-business-in-abroad-cl1239",
+        "https://studyabroad.shiksha.com/ms-in-aerospace-engineering-from-abroad-ds11509269",
+        "https://studyabroad.shiksha.com/ms-in-civil-engineering-from-abroad-ds11509264",
+        "https://studyabroad.shiksha.com/mba-in-accounting-from-abroad-ds11508247",
+        "https://studyabroad.shiksha.com/masters-in-journalism-courses-in-abroad-sl1328",
+        "https://studyabroad.shiksha.com/mba-in-hospitality-from-abroad-ds11508256",
+        "https://studyabroad.shiksha.com/be-btech-in-abroad-dc11510",
+        "https://studyabroad.shiksha.com/mba-in-abroad-dc11508",
+        "https://studyabroad.shiksha.com/ms-in-abroad-dc11509"
     ]
-    database = DBQueries()
-    conx = database.connect("Institute")
-    create_queries = f"CREATE TABLE IF NOT EXISTS institute_urls(id INT PRIMARY KEY AUTO_INCREMENT, institute_url VARCHAR(500))"
-    database._create_table(conx, create_queries)
+    try:
+        database = DBQueries()
+        conx = database.connect("Institute")
+        create_queries = f"CREATE TABLE IF NOT EXISTS institute_urls(institute_id INT PRIMARY KEY AUTO_INCREMENT, institute_url VARCHAR(500) UNIQUE )"
+        database._create_table(conx, create_queries)
 
-    for url in urls:
-        print('scraping ', url)
-        urls = scrape_url(url)
-        for u in urls:
-            pass
-            query = f"INSERT INTO institute_urls(institute_url) VALUES('{u}')"
-            database.insert_record(conx, query)
-
-    conx.commit()
+        for url in urls:
+            print('scraping ', url)
+            urls = scrape_url(url)
+            inst_urls = list(database.get_records(conx, "select institute_url from institute_urls"))
+            for u in urls:
+                if u not in inst_urls:
+                    query = f"INSERT INTO institute_urls(institute_url) VALUES('{u}')"
+                    # print(query)
+                    database.insert_record(conx, query)
+            conx.commit()
+    except Exception as e:
+        print("exception ", e)
+    finally:
+        conx.commit()
+        conx.close()

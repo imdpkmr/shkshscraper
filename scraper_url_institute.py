@@ -18,7 +18,7 @@ def scrape_url(p_url):
     urls = []
     for page in range(number_pages):
         page_url = p_url+"-"+str(page)
-        # print(page_url)
+        print(page_url)
         response = requests.get(page_url)
         soup = BeautifulSoup(response.content, "html.parser")
         links = soup.find_all('div', attrs={"class": "tuple-title"})
@@ -32,21 +32,20 @@ def scrape_url(p_url):
 
 if __name__ == "__main__":
     urls = [
-        "https://studyabroad.shiksha.com/certificate-diploma-in-engineering-in-abroad-cl1240",
-        "https://studyabroad.shiksha.com/certificate-diploma-in-business-in-abroad-cl1239",
-        "https://studyabroad.shiksha.com/certificate-diploma-in-computers-in-abroad-cl1241",
-        "https://studyabroad.shiksha.com/bachelors-in-media-courses-in-abroad-sl1325",
-        "https://studyabroad.shiksha.com/bachelors-in-fashion-design-courses-in-abroad-sl1331",
-        "https://studyabroad.shiksha.com/bachelors-of-business-in-abroad-cl1239",
-        "https://studyabroad.shiksha.com/ms-in-aerospace-engineering-from-abroad-ds11509269",
-        "https://studyabroad.shiksha.com/ms-in-civil-engineering-from-abroad-ds11509264",
-        "https://studyabroad.shiksha.com/mba-in-accounting-from-abroad-ds11508247",
-        "https://studyabroad.shiksha.com/masters-in-journalism-courses-in-abroad-sl1328",
-        "https://studyabroad.shiksha.com/mba-in-hospitality-from-abroad-ds11508256",
         "https://studyabroad.shiksha.com/be-btech-in-abroad-dc11510",
         "https://studyabroad.shiksha.com/mba-in-abroad-dc11508",
-        "https://studyabroad.shiksha.com/ms-in-abroad-dc11509"
-    ]
+        "https://studyabroad.shiksha.com/ms-in-abroad-dc11509"]
+    # "https://studyabroad.shiksha.com/certificate-diploma-in-engineering-in-abroad-cl1240",
+    # "https://studyabroad.shiksha.com/certificate-diploma-in-business-in-abroad-cl1239",
+    # "https://studyabroad.shiksha.com/certificate-diploma-in-computers-in-abroad-cl1241",
+    # "https://studyabroad.shiksha.com/bachelors-in-media-courses-in-abroad-sl1325",
+    # "https://studyabroad.shiksha.com/bachelors-in-fashion-design-courses-in-abroad-sl1331",
+    # "https://studyabroad.shiksha.com/bachelors-of-business-in-abroad-cl1239",
+    # "https://studyabroad.shiksha.com/ms-in-aerospace-engineering-from-abroad-ds11509269",
+    # "https://studyabroad.shiksha.com/ms-in-civil-engineering-from-abroad-ds11509264",
+    # "https://studyabroad.shiksha.com/mba-in-accounting-from-abroad-ds11508247",
+    # "https://studyabroad.shiksha.com/masters-in-journalism-courses-in-abroad-sl1328",
+    # "https://studyabroad.shiksha.com/mba-in-hospitality-from-abroad-ds11508256",
     try:
         database = DBQueries()
         conx = database.connect("Institute")

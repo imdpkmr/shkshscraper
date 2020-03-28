@@ -29,7 +29,7 @@ def write_json(institute, university_name=""):
     with open(filename, "w") as outfile:
         outfile.write(json_object)
 
-def scrape_exams( url):
+def scrape_exams(institute_id, course_id, url):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
     insert_queries = []
@@ -45,8 +45,8 @@ def scrape_exams( url):
                 break
         exam = exams.find_all('div', attrs={"class": "Styled__EntryReqDetails-sc-14wej5r-4 jcAfxi"})
         for eexam in exam:
-            print(eexam.label.text)
-            print(eexam.span.text)
+            # print(eexam.label.text)
+            # print(eexam.span.text)
             exams_entrance.update({
                 eexam.label.text: eexam.span.text,
             })
@@ -63,6 +63,8 @@ def scrape_exams( url):
     try:
         exam = {
             "institutes_instituteexamrelation": {
+                "institute_id": institute_id,
+                "course_id": course_id,
                 "toefl": exams_entrance.get("TOEFL :"),
                 "ielts": exams_entrance.get("IELTS :"),
                 "pte": exams_entrance.get("PTE :"),
@@ -79,24 +81,29 @@ def scrape_exams( url):
         # write_json(exams, url.split('/')[-1])
 
 if __name__ == "__main__":
-    urls = [
-        "https://studyabroad.shiksha.com/uk/universities/university-of-oxford/msc-in-computer-science",
-        "https://studyabroad.shiksha.com/usa/universities/harvard-university/mba",
-        "https://studyabroad.shiksha.com/uk/universities/university-of-cambridge/master-of-business-administration",
-        "https://studyabroad.shiksha.com/usa/universities/stanford-university/master-of-business-administration",
-        "https://studyabroad.shiksha.com/usa/universities/harvard-university/masters-in-computer-science"
-    ]
+    # urls = [
+    #     "https://studyabroad.shiksha.com/uk/universities/university-of-oxford/msc-in-computer-science",
+    #     "https://studyabroad.shiksha.com/usa/universities/harvard-university/mba",
+    #     "https://studyabroad.shiksha.com/uk/universities/university-of-cambridge/master-of-business-administration",
+    #     "https://studyabroad.shiksha.com/usa/universities/stanford-university/master-of-business-administration",
+    #     "https://studyabroad.shiksha.com/usa/universities/harvard-university/masters-in-computer-science"
+    # ]
 
-    database = DBQueries()
-    conx = database.connect("Courses")
-    # create_queries = f"CREATE TABLE institutes_instituteexamrelation(toefl VARCHAR(100), ielts VARCHAR(100), pte VARCHAR(100), gre VARCHAR(100), gmat VARCHAR(100))"
-    # database._create_table(conx, create_queries)
+    create_queries = f"CREATE TABLE IF NOT EXISTS institutes_instituteexamrelation(institute_id INT, course_id INT, toefl VARCHAR(100), ielts VARCHAR(100), pte VARCHAR(100), gre VARCHAR(100), gmat VARCHAR(100), FOREIGN KEY (institute_id) REFERENCES institute_urls(institute_id), FOREIGN KEY (course_id) REFERENCES url_courses(course_id))"
     try:
-        for url in urls:
-            print('scraping ', url)
-            insert_queries = scrape_exams(url)
+        database = DBQueries()
+        conx = database.connect("Institute")
+        database._create_table(conx, create_queries)
+        cid_iid_rurls = database.get_records(conx, f"select course_id, institute_id, course_rel_url from url_courses order by course_id limit 2")
+        for cid_iid_rurl in cid_iid_rurls:
+            course_id = cid_iid_rurl[0]
+            institute_id = cid_iid_rurl[1]
+            rurl = cid_iid_rurl[2]
+            url = "https://studyabroad.shiksha.com" + rurl
+            insert_queries = scrape_exams(institute_id, course_id, url)
             for query in insert_queries:
                 database.insert_record(conx, query)
+            conx.commit()
     except ConnectionError:
         pass
     finally:

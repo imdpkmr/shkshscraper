@@ -31,7 +31,7 @@ def ins_query_maker(tablename, rowdict):
     return (query)  # in real code we do this
 
 
-def scrape_institute(url, id=0):
+def scrape_institute(url, id):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
     insert_queries = []
@@ -84,17 +84,22 @@ def scrape_institute(url, id=0):
             data.append([ele for ele in cols if ele])
         for record in data:
             institute_details[record[0]] = record[1]
-        num_courses = \
-            soup.find('div', attrs={"class": "Styled__FindMoreCourseTitle-sc-1yl1nt-57 egsLwJ"}).span.text.split(' ')[0]
+        num_courses = soup.find('div', attrs={"class": "Styled__FindMoreCourseTitle-sc-1yl1nt-57 egsLwJ"}).span.text.split(' ')[0]
         number_of_programs = ''.join(filter(str.isdigit, num_courses))
         institute_details.update({"number_of_programs": number_of_programs})
         # print(num_courses)
-        hostel = soup.find('div', attrs={"class": "Styled__OnCampusDiv-sc-1yl1nt-4 ipxyIR"})
-        # institute_details[hostel.label.text] = hostel.p.text
-        institute_details.update({
-            "hostel_fee": ' '.join(hostel.p.text.split(' ')[1:]),
-            "hostel_fee_currency_id": hostel.p.text.split(' ')[0],
-        })
+        hostel = institute_details.get("Yearly Hostel & Meals Expense")
+        if hostel is None:
+            institute_details.update({
+                "on_campus_hostel": "No",
+            })
+        else:
+            # print(hostel)
+            institute_details.update({
+                "on_campus_hostel": "Yes",
+                "hostel_fee": ' '.join(hostel.split(' ')[1:]),
+                "hostel_fee_currency_id": hostel.split(' ')[0],
+            })
         # print(hostel.p.text)
     except IndexError:
         pass
@@ -158,9 +163,8 @@ def scrape_institute(url, id=0):
     try:
         institute = {
             "institute_institute": {
-                "url":url,
                 "name": institute.get("name"),
-                "id": id,
+                "institute_id": id,
                 "short_name": None,
                 "established_year": institute.get("established_year"),
                 "institute_type": institute.get("institute_type"),
@@ -170,7 +174,7 @@ def scrape_institute(url, id=0):
                 "brochure": None,
             },
             "institutes_institutecontactdetail": {
-                "id": id,
+                "institute_id": id,
                 "website": contact_details.get("website"),
                 "phone_nos": contact_details.get("phone_nos"),
                 "fax": contact_details.get("fax"),
@@ -180,12 +184,12 @@ def scrape_institute(url, id=0):
                 "longitude": inst_contact.get("lng"),
             },
             "institutes_institutedetail": {
-                "id": id,
+                "institute_id": id,
                 "number_of_programs": institute_details.get("number_of_programs"),
                 "campus_size": institute_details.get("Size of Campus in acres"),
                 "no_of_international_students": institute_details.get("Total International Students"),
                 "intnl_students_percent": institute_details.get("% International Students"),
-                "on_campus_hostel": institute_details.get("On campus accommodation"),
+                "on_campus_hostel": institute_details.get("on_campus_hostel"),
                 "hostel_fee": institute_details.get("hostel_fee"),
                 "hostel_fee_currency_id": institute_details.get("hostel_fee_currency_id"),
                 "gender_ratio": institute_details.get("Male/Female Ratio"),
@@ -193,19 +197,19 @@ def scrape_institute(url, id=0):
                 "bachelors_masters_ratio": institute_details.get("UG/PG Course Ratio"),
             },
             "institutes_instituteranking": {
-                "id": id,
+                "institute_id": id,
                 "ranking_authority_id": rank.get("ranking_authority_id"),
                 "ranking_type_id": rank.get("ranking_type_id"),
                 "rank": rank.get("rank"),
             },
             "institute_coursefee": {
-                "id": id,
+                "institute_id": id,
                 "min_fee": fee.get("min_fee"),
                 "max_fee": fee.get("max_fee"),
                 "currency_id": fee.get("currency_id"),
             },
             "institutes_institute_intake": {
-                "id": id,
+                "institute_id": id,
                 "intake_id": intake.get("intake_month"),
             }
         }
@@ -236,41 +240,31 @@ if __name__ == "__main__":
 
     database = DBQueries()
     queries = [
-        f"CREATE TABLE IF NOT EXISTS institute_institute( id INT PRIMARY KEY, url VARCHAR(200) UNIQUE NOT NULL,name VARCHAR(100), short_name VARCHAR(50), established_year VARCHAR(5), institute_type VARCHAR(200), country_id VARCHAR(22), state_id VARCHAR(22), city_id VARCHAR(22), brochure VARCHAR(22))",
-        f"CREATE TABLE IF NOT EXISTS institute_coursefee(id INT, min_fee VARCHAR(20), max_fee VARCHAR(20), currency_id VARCHAR(20), FOREIGN KEY (id) REFERENCES institute_institute(id))",
-        f"CREATE TABLE IF NOT EXISTS institutes_institutecontactdetail(id INT, website VARCHAR(500), phone_nos VARCHAR(100), fax VARCHAR(15), email_address VARCHAR(50), main_address VARCHAR(200), latitude VARCHAR(50), longitude VARCHAR(50), FOREIGN KEY (id) REFERENCES institute_institute(id))" ,
-        f"CREATE TABLE IF NOT EXISTS institutes_institutedetail(id INT, number_of_programs VARCHAR(20), campus_size VARCHAR(20), no_of_international_students VARCHAR(20), intnl_students_percent VARCHAR(20), on_campus_hostel VARCHAR(20), hostel_fee VARCHAR(20), hostel_fee_currency_id VARCHAR(20), gender_ratio VARCHAR(20), student_faculty_ratio VARCHAR(20), bachelors_masters_ratio VARCHAR(20), FOREIGN KEY (id) REFERENCES institute_institute(id))",
-        f"CREATE TABLE IF NOT EXISTS institutes_instituteranking(id INT, ranking_authority_id VARCHAR(100), ranking_type_id VARCHAR(100), rank VARCHAR(20), FOREIGN KEY (id) REFERENCES institute_institute(id))",
-        f"CREATE TABLE IF NOT EXISTS institutes_institute_intake(id INT, intake_id VARCHAR(20), FOREIGN KEY (id) REFERENCES institute_institute(id))"
+        f"CREATE TABLE IF NOT EXISTS institute_institute(institute_id INT,name VARCHAR(100), short_name VARCHAR(50), established_year VARCHAR(5), institute_type VARCHAR(200), country_id VARCHAR(22), state_id VARCHAR(22), city_id VARCHAR(22), brochure VARCHAR(22),FOREIGN KEY (institute_id) REFERENCES institute_urls(institute_id))" ,
+        f"CREATE TABLE IF NOT EXISTS institute_coursefee(institute_id INT, min_fee VARCHAR(20), max_fee VARCHAR(20), currency_id VARCHAR(20), FOREIGN KEY (institute_id) REFERENCES institute_urls(institute_id))",
+        f"CREATE TABLE IF NOT EXISTS institutes_institutecontactdetail(institute_id INT, website VARCHAR(500), phone_nos VARCHAR(100), fax VARCHAR(15), email_address VARCHAR(50), main_address VARCHAR(200), latitude VARCHAR(50), longitude VARCHAR(50), FOREIGN KEY (institute_id) REFERENCES institute_urls(institute_id))" ,
+        f"CREATE TABLE IF NOT EXISTS institutes_institutedetail(institute_id INT, number_of_programs VARCHAR(20), campus_size VARCHAR(20), no_of_international_students VARCHAR(20), intnl_students_percent VARCHAR(20), on_campus_hostel VARCHAR(20), hostel_fee VARCHAR(20), hostel_fee_currency_id VARCHAR(20), gender_ratio VARCHAR(20), student_faculty_ratio VARCHAR(20), bachelors_masters_ratio VARCHAR(20), FOREIGN KEY (institute_id) REFERENCES institute_urls(institute_id))",
+        f"CREATE TABLE IF NOT EXISTS institutes_instituteranking(institute_id INT, ranking_authority_id VARCHAR(100), ranking_type_id VARCHAR(100), rank VARCHAR(20), FOREIGN KEY (institute_id) REFERENCES institute_urls(institute_id))",
+        f"CREATE TABLE IF NOT EXISTS institutes_institute_intake(institute_id INT, intake_id VARCHAR(20), FOREIGN KEY (institute_id) REFERENCES institute_urls(institute_id))"
     ]
 
 
     try:
         conx = database.connect("Institute")
-        for query in queries:
-            database._create_table(conx, query)
+        for q in queries:
+            database._create_table(conx, q)
         cursor = conx.cursor()
-        cursor.execute("select id from institute_institute")
-        try:
-            id = cursor.fetchall()[-1][0]
-        except IndexError:
-            id = 1
-        # print(id)
-        cursor.execute("SELECT DISTINCT institute_url FROM institute_urls")
-        universities = cursor.fetchall()
-        print(len(universities))
+        cursor.execute("SELECT * FROM institute_urls order by institute_id limit 1")
+        ids_urls = cursor.fetchall()
         cursor.close()
-
-        q = scrape_institute("https://studyabroad.shiksha.com/usa/universities/texas-tech-university")
-
-        for uni in universities:
-            university = str(uni[0])
-            print('scraping ' + university)
-            id = id + 1
-            insert_queries = scrape_institute(university, id)
+        for id_url in ids_urls:
+            institute_id = id_url[0]
+            institute_url = id_url[1]
+            print(str(institute_id)+"=>"+institute_url)
+            insert_queries = scrape_institute(institute_url, institute_id)
             for query in insert_queries:
                 database.insert_record(conx, query)
-                # print(query)
+            conx.commit()
     except ConnectionError:
         pass
     finally:

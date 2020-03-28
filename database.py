@@ -44,14 +44,24 @@ class DBQueries:
     def insert_record(self, connection, query):
         # stmt = f"INSERT INTO {TABLE_NAME}(Original_File_Name,Input_File_Name) VALUES('{orgFileName}', '{inputFileName}')"
         try:
-            cursor = connection.cursor()
+            cursor = connection.cursor(buffered=True)
             cursor.execute(query)
-            print('record inserted')
+            # print('record inserted')
         except Error as e:
-            print('Error inserting record names', e)
+            print('Error inserting record ', e)
             print(query)
         finally:
             cursor.close()
+
+    def get_records(self, connection, query):
+        try:
+            cursor = connection.cursor(buffered=True)
+            cursor.execute(query)
+            return cursor.fetchall()
+        except Error as e:
+            pass
+        finally:
+            cursor.close
 
 
 if __name__ == '__main__':

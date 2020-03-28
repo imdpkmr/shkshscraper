@@ -28,7 +28,7 @@ def write_json(institute, university_name=""):
     with open(filename, "w") as outfile:
         outfile.write(json_object)
 
-def scrape_courses( url):
+def scrape_courses( course_id, institute_id, url):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
     insert_queries = []
@@ -72,6 +72,8 @@ def scrape_courses( url):
     try:
         courses = {
             "insinstitutes_institutecourse": {
+                "institute_id":institute_id,
+                "course_id":course_id,
                 "department": "NA",
                 "degree_id": "Manual",
                 "stream_id": "Manual",
@@ -79,6 +81,8 @@ def scrape_courses( url):
                 "level_id": coursedetails.get("level_id"),
             },
             "institutes_institutecoursecommondetail": {
+                "institute_id":institute_id,
+                "course_id":course_id,
                 "mode": "NA",
                 "course_duration": coursedetails.get("course_duration"),
                 "duration_type": coursedetails.get("duration_type"),
@@ -90,39 +94,50 @@ def scrape_courses( url):
 
         insert_queries.append(ins_query_maker("insinstitutes_institutecourse", courses["insinstitutes_institutecourse"]))
         insert_queries.append(ins_query_maker("institutes_institutecoursecommondetail", courses["institutes_institutecoursecommondetail"]))
-        insert_queries.append(f"INSERT INTO institutes_institutecourse_specialization(specialization) values('{courses.get('institutes_institutecourse_specialization')}')")
+        insert_queries.append(f"INSERT INTO institutes_institutecourse_specialization(institute_id,course_id, specialization) values({institute_id},{course_id},'{courses.get('institutes_institutecourse_specialization')}')")
 
         return  insert_queries
     except IndexError:
         pass
     finally:
-        write_json(courses, url.split('/')[-1])
+        pass
+        # write_json(courses, url.split('/')[-1])
 
 if __name__ == "__main__":
-    urls = [
-        "https://studyabroad.shiksha.com/uk/universities/university-of-oxford/msc-in-computer-science",
-        "https://studyabroad.shiksha.com/usa/universities/harvard-university/mba",
-        "https://studyabroad.shiksha.com/uk/universities/university-of-cambridge/master-of-business-administration",
-        "https://studyabroad.shiksha.com/usa/universities/stanford-university/master-of-business-administration",
-        "https://studyabroad.shiksha.com/usa/universities/harvard-university/masters-in-computer-science"
-    ]
-
-    database = DBQueries()
-    conx = database.connect("Courses")
-    # create_queries = [
-    #     f"CREATE TABLE insinstitutes_institutecourse(department VARCHAR(100), degree_id VARCHAR(100), stream_id VARCHAR(100), name VARCHAR(100), level_id VARCHAR(100))",
-    #     f"CREATE TABLE institutes_institutecoursecommondetail(mode VARCHAR(100), course_duration VARCHAR(100), duration_type VARCHAR(100), fee VARCHAR(100), fee_currency_id VARCHAR(100))",
-    #     f"CREATE TABLE institutes_institutecourse_specialization(specialization VARCHAR(100))"
+    # urls = [
+    #     "https://studyabroad.shiksha.com/uk/universities/university-of-oxford/msc-in-computer-science",
+    #     "https://studyabroad.shiksha.com/usa/universities/harvard-university/mba",
+    #     "https://studyabroad.shiksha.com/uk/universities/university-of-cambridge/master-of-business-administration",
+    #     "https://studyabroad.shiksha.com/usa/universities/stanford-university/master-of-business-administration",
+    #     "https://studyabroad.shiksha.com/usa/universities/harvard-university/masters-in-computer-science"
     # ]
-    # for query in create_queries:
-    #     database._create_table(conx, query)
+
+    create_queries = [
+        f"CREATE TABLE IF NOT EXISTS insinstitutes_institutecourse(institute_id INT, course_id INT,  department VARCHAR(100), degree_id VARCHAR(100), stream_id VARCHAR(100), name VARCHAR(100), level_id VARCHAR(100),FOREIGN KEY (course_id) REFERENCES url_courses(course_id), FOREIGN KEY (institute_id) REFERENCES institute_urls(institute_id))",
+        f"CREATE TABLE IF NOT EXISTS institutes_institutecoursecommondetail(institute_id INT,course_id INT, mode VARCHAR(100), course_duration VARCHAR(100), duration_type VARCHAR(100), fee VARCHAR(100), fee_currency_id VARCHAR(100), FOREIGN KEY (institute_id) REFERENCES institute_urls(institute_id), FOREIGN KEY (course_id) REFERENCES url_courses(course_id))",
+        f"CREATE TABLE IF NOT EXISTS institutes_institutecourse_specialization(institute_id INT, course_id INT,  specialization VARCHAR(100), FOREIGN KEY (institute_id) REFERENCES institute_urls(institute_id), FOREIGN KEY (course_id) REFERENCES url_courses(course_id))"
+    ]
     try:
-        for url in urls:
-            print('scraping ', url)
-            insert_queries = scrape_courses(url)
+        database = DBQueries()
+        conx = database.connect("Institute")
+        for query in create_queries:
+            database._create_table(conx, query)
+        cid_iid_rurls = database.get_records(conx, f"select course_id, institute_id, course_rel_url from url_courses order by course_id limit 2")
+        for cid_iid_rurl in cid_iid_rurls:
+            course_id = cid_iid_rurl[0]
+            institute_id = cid_iid_rurl[1]
+            rurl = cid_iid_rurl[2]
+            url = "https://studyabroad.shiksha.com" + rurl
+            print(url)
+            # print(str(id)+"=>"+rurl)
+            # for url in urls:
+            #     print('scraping ', url)
+            insert_queries = scrape_courses(course_id, institute_id, url)
             for query in insert_queries:
                 database.insert_record(conx, query)
+            conx.commit()
     except ConnectionError:
         pass
     finally:
         conx.commit()
+        conx.close()

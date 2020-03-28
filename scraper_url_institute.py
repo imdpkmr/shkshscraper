@@ -28,15 +28,6 @@ def scrape_url(p_url):
             if(len(str(url).split('/')) == 6):
                 urls.append(url)
 
-    # for u in urls:
-    #     print(u, '====')
-    # print([url for url in urls_])
-    # for index, value in enumerate(links):
-    # sheet1.write(index+1, 0, value['href'])
-    # print(str(value['href']))
-    # urls.append(str(value['href']))
-    # wb.save('out_files/'+url.split('/')[-1]+'urls.xls')
-    # print(urls)
     return urls
 
 if __name__ == "__main__":
@@ -44,7 +35,11 @@ if __name__ == "__main__":
         "https://studyabroad.shiksha.com/usa/mba-colleges-dc",
         "https://studyabroad.shiksha.com/usa/be-btech-colleges-dc",
         "https://studyabroad.shiksha.com/usa/bba-colleges-dc",
-        "https://studyabroad.shiksha.com/usa/bsc-colleges-dc"
+        "https://studyabroad.shiksha.com/usa/bsc-colleges-dc",
+        "https://studyabroad.shiksha.com/usa/march-colleges-dc",
+        "https://studyabroad.shiksha.com/usa/mim-colleges-dc",
+        "https://studyabroad.shiksha.com/usa/ma-colleges-dc",
+        "https://studyabroad.shiksha.com/usa/mem-colleges-dc"
     ]
     database = DBQueries()
     conx = database.connect("Institute")

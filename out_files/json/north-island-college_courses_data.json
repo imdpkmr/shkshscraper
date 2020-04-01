@@ -1,0 +1,211 @@
+{
+  "name_of_the_university": "North Island College (NIC)",
+  "courses": [
+    {
+      "level": "Bachelors Diploma Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Tourism & Hospitality Management Diploma",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "8,93,621",
+      "tuition_fee_currency": "8,93,621",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "Fees"
+      ],
+      "application_fee_currency": "No",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "80",
+        "6",
+        "54"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Business Administration in General Management",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "4",
+      "duration_type": "Years",
+      "tuition_fees": "6,91,748",
+      "tuition_fee_currency": "6,91,748",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "Fees"
+      ],
+      "application_fee_currency": "No",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "80",
+        "6",
+        "54"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Web Design - Interactive Media Certificate",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "8",
+      "duration_type": "Months",
+      "tuition_fees": "6,91,748",
+      "tuition_fee_currency": "6,91,748",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "Fees"
+      ],
+      "application_fee_currency": "No",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "80",
+        "6",
+        "54"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Business Administration in Accounting",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "4",
+      "duration_type": "Years",
+      "tuition_fees": "8,84,832",
+      "tuition_fee_currency": "8,84,832",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "Fees"
+      ],
+      "application_fee_currency": "No",
+      "exam": [
+        "TOEFL",
+        "IELTS"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "80",
+        "6"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Certificate Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Mobile Application Development Certificate",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "8",
+      "duration_type": "Months",
+      "tuition_fees": "8,84,832",
+      "tuition_fee_currency": "8,84,832",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "Fees"
+      ],
+      "application_fee_currency": "No",
+      "exam": [
+        "TOEFL",
+        "IELTS"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "80",
+        "6"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Business Administration in Marketing",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "4",
+      "duration_type": "Years",
+      "tuition_fees": "6,91,748",
+      "tuition_fee_currency": "6,91,748",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "Fees"
+      ],
+      "application_fee_currency": "No",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "80",
+        "6",
+        "54"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    }
+  ]
+}

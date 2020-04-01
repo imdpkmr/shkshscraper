@@ -2,12 +2,13 @@ import json
 
 import requests
 from bs4 import BeautifulSoup
+import re
 
 from database import DBQueries
 
 
-def write_json(institute_json, university_name=""):
-    json_object = json.dumps(institute_json, indent=2)
+def write_json(details_dict, university_name=""):
+    json_object = json.dumps(details_dict, indent=2)
     filename = "out_files/json/" + university_name + "_data.json"
     with open(filename, "w") as outfile:
         outfile.write(json_object)
@@ -66,7 +67,8 @@ def scrape_institute(url, id):
             data.append([ele for ele in cols if ele])
         for record in data:
             institute_details[record[0]] = record[1]
-        num_courses = soup.find('div', attrs={"class": "Styled__FindMoreCourseTitle-sc-1yl1nt-57 egsLwJ"}).span.text.split(' ')[0]
+        num_courses = \
+        soup.find('div', attrs={"class": "Styled__FindMoreCourseTitle-sc-1yl1nt-57 egsLwJ"}).span.text.split(' ')[0]
         number_of_programs = ''.join(filter(str.isdigit, num_courses))
         institute_details.update({"number_of_programs": number_of_programs})
         # print(num_courses)
@@ -90,13 +92,12 @@ def scrape_institute(url, id):
 
     # print(institute_details)
 
-    fee = {}
+    apfee = {}
     try:
         app_fee = soup.find('td', string="Application fees")
         application_fees = app_fee.find_next_sibling('td').text.split(' ')
-        fee.update({"currency_id": application_fees[0],
-                    "min_fee": application_fees[1],
-                    "max_fee": application_fees[3]})
+        apfee.update({"application_fee_currency": application_fees[0],
+                    "application_fee": application_fees[1:]})
     except IndexError:
         pass
     except AttributeError:
@@ -104,7 +105,7 @@ def scrape_institute(url, id):
 
     rank_uni = {}
     try:
-        rankings__ = soup.find_all('div', attrs={"class":"Styled__RankingListBox-sc-132amsi-9 iVoSAn"})
+        rankings__ = soup.find_all('div', attrs={"class": "Styled__RankingListBox-sc-132amsi-9 iVoSAn"})
         for rankings_ in rankings__:
             rankings = rankings_.find_all('div')
             rank_name = rankings[0].text
@@ -113,13 +114,13 @@ def scrape_institute(url, id):
             # print("rank ->", rank, "=>")
             if "QS" in rank_name:
                 rank_uni.update({"qs_ranking_year": rank_name.split(" ")[-2],
-                             "qs_ranking": rank.split('#')[-1]})
+                                 "qs_ranking": rank.split('#')[-1]})
             if "Times Higher Education" in rank_name:
                 rank_uni.update({"times_higher_education_year": rank_name.split(' ')[-2],
-                             "times_higher_education": rank.split('#')[-1]})
+                                 "times_higher_education": rank.split('#')[-1]})
             if "U.S. News" in rank_name:
                 rank_uni.update({"usnews_year": rank_name.split(' ')[-2],
-                             "usnews": rank.split('#')[-1]})
+                                 "usnews": rank.split('#')[-1]})
 
             for r in rankings:
                 pass
@@ -134,26 +135,20 @@ def scrape_institute(url, id):
         intake_month__ = soup.find_all('table', attrs={"class": "Styled__TableStyle-sc-10ucg51-0 lfnXDf"})[-2]
         intake_month_ = intake_month__.find_all('tr')[-1]
         intake_month = intake_month_.find_all('td')
-        if(intake_month[0].text == "Intake Season & Deadlines"):
+        if (intake_month[0].text == "Intake Season & Deadlines"):
             intakes = intake_month[1].find_all('div')
             intake_index = 0
             im = "intake_month"
             for intake in intakes:
                 # print(intake.text)
                 intake_months.update({im: intake.text.split(' ')[-2]})
-                intake_index+=1
-                im = "intake_month_"+str(intake_index)
+                intake_index += 1
+                im = "intake_month_" + str(intake_index)
         # print(intake_months)
     except IndexError:
         pass
     except AttributeError:
         pass
-
-    # for r in rank:
-    #     print(r.text)
-    # print(rank[0].text)
-    # print(rank[2].label.text)
-    # print(rank[2].p.strong.text)
 
 
     inst_contact = {}
@@ -171,23 +166,23 @@ def scrape_institute(url, id):
 
     logo = {}
     try:
-        logo_link_ = soup.find('img', attrs={"class":"Styled__ImageDiv-sc-5p2r35-0 gYjxkS"})
+        logo_link_ = soup.find('img', attrs={"class": "Styled__ImageDiv-sc-5p2r35-0 gYjxkS"})
         logo_link = logo_link_['src']
         # print(logo_link_)
-        logo.update({"logo":logo_link})
+        logo.update({"logo": logo_link})
     except AttributeError:
         pass
     except IndexError:
         pass
-
     try:
         institute_dict = {
-            institute.get("name") : {
+            institute.get("name"): {
                 "name_of_the_university": institute.get("name"),
-                "short_name": None,#do we need to make it or get from the name of the insti
+                "short_name": None,  # do we need to make it or get from the name of the insti
                 "establishment_year": institute.get("established_year"),
                 "institute_type": institute.get("institute_type"),
-                "country": None,#need to use API to get next three fields as per the excel sheet, else this info can be extracted from the page itself
+                "country": None,
+                # need to use API to get next three fields as per the excel sheet, else this info can be extracted from the page itself
                 "state": None,
                 "city": None,
                 "website": contact_details.get("website"),
@@ -198,7 +193,7 @@ def scrape_institute(url, id):
                 "latitude": inst_contact.get("lat"),
                 "longitude": inst_contact.get("lng"),
                 "logo": logo.get("logo"),
-                "brochure": None,#needs sign in to get brochure from shiksha
+                "brochure": None,  # needs sign in to get brochure from shiksha
                 "no_of_programs": institute_details.get("number_of_programs"),
                 "no_of_international_students": institute_details.get("Total International Students"),
                 "international_student_%": institute_details.get("% International Students"),
@@ -206,7 +201,7 @@ def scrape_institute(url, id):
                 "hostel_fee": institute_details.get("hostel_fee"),
                 "hostel_fee_currency": institute_details.get("hostel_fee_currency_id"),
                 "qs_ranking": rank_uni.get("qs_ranking"),
-                "qs_ranking_year" :rank_uni.get("qs_ranking_year"),
+                "qs_ranking_year": rank_uni.get("qs_ranking_year"),
                 "times_higher_education": rank_uni.get("times_higher_education"),
                 "times_higher_education_year": rank_uni.get("times_higher_education_year"),
                 "usnews": rank_uni.get("usnews"),
@@ -216,6 +211,13 @@ def scrape_institute(url, id):
                 "intake_month_2": intake_months.get("intake_month_2"),
             }
         }
+        details_for_course = {
+            'application_fee': apfee.get("application_fee"),
+            'application_fee_currency': apfee.get("application_fee_currency"),
+            'date_type': 'Application End Date',#where are these field??
+            'season': 'June',
+            'date': '30, 2020',
+        }
     except KeyError:
         print('key: value not found')
     except ValueError as str_err:
@@ -223,8 +225,126 @@ def scrape_institute(url, id):
     finally:
         pass
         # print(institute_dict)
+        return institute.get("name"), details_for_course
         write_json(institute_dict, url.split('/')[-1])
 
+
+def scrape_rurl_courses(url):
+    rurls = []
+    response = requests.get(url + "/courses")
+    soup = BeautifulSoup(response.content, "html.parser")
+    links__ = soup.find_all('a', attrs={"class": "Styled__LinkStyle-sc-19aj422-2 jRTEUB"})
+    for l in links__:
+        link = l['href']
+        if link not in rurls:
+            rurls.append(link)
+            # print(link)
+    return rurls
+
+
+def scrape_course_details(rurl, details_for_course):
+    url = "https://studyabroad.shiksha.com" + rurl
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, "html.parser")
+    coursedetails = {}
+    try:
+        course_details_ = soup.find('table', attrs={"class": "Styled__TableStyle-sc-10ucg51-0 lfnXDf"})
+        course_details__ = course_details_.find_all("td")
+        # for coursed in course_details__:
+        #     print(coursed.text)
+        coursedetails.update({
+            "course_duration": course_details__[1].text.split(' ')[0],
+            "duration_type": course_details__[1].text.split(' ')[-1],
+            "level_id": course_details__[3].text,
+        })
+        # print(course_details__[1].text.split(' ')[0], course_details__[1].text.split(' ')[-1], course_details__[3].text)
+    except IndexError:
+        pass
+    except AttributeError:
+        pass
+
+    try:
+        courses_ = soup.find('div', attrs={"class": "Styled__WidgetHeading-opouq6-1 bSjtKj"})
+        for _ in courses_.find_all('div'):
+            _.decompose()
+        # print(courses_.text)
+
+        fees__ = soup.find('table', attrs={"class": "Styled__TableStyle-sc-10ucg51-0 vXiFr"})
+        fees_ = fees__.find_all('td')
+        # for _ in fees_:
+        #     print(_.text)
+        coursedetails.update({
+            "name": courses_.text,
+            "fee_currency_id": fees_[1].text.split(' ')[0],
+            "fee": fees_[1].text.split(' ')[-1],
+        })
+    except IndexError:
+        pass
+    except TypeError:
+        pass
+    except AttributeError:
+        pass
+    # print(coursedetails)
+
+    exams_entrance = {}
+    try:
+        exams__ = soup.find_all('table', attrs={"class": "Styled__TableStyle-sc-10ucg51-0 lfnXDf"})[1]
+        # print(exams__.text)
+        exams_ = exams__.find_all('tr')
+        for _ in exams_:
+            if _.find(text=re.compile("Exams")):
+                exams = _
+                break
+        exam = exams.find_all('div', attrs={"class": "Styled__EntryReqDetails-sc-14wej5r-4 jcAfxi"})
+        for eexam in exam:
+            # print(eexam.label.text)
+            # print(eexam.span.text)
+            exams_entrance.update({
+                eexam.label.text: eexam.span.text,
+            })
+    except IndexError:
+        pass
+    except TypeError:
+        pass
+    # print(exams_entrance)
+    exams = []
+    exams_score = []
+    for exam, exam_score in exams_entrance.items():
+        exams.append(exam.split(' ')[0])
+        exams_score.append(exam_score)
+
+
+    try:
+        course_dtls = {
+            'level': coursedetails.get("level_id"),
+            'stream': 'Engineering',# TODO: from where did you pick up the following
+            'degree': 'Bachelor of Architecture',
+            'specialization': 'Architecture',
+            'course_name': coursedetails.get("name"),
+            'department/school': 'ADBE City', #TODO: not there oon course details page
+            'mode': 'Regular', # TODO: not there in course details page
+            'duration': coursedetails.get("course_duration"),
+            'duration_type': coursedetails.get("duration_type"),
+            'tuition_fees': coursedetails.get("fee"),#Styled__TableStyle-sc-10ucg51-0 vXiFr
+            'tuition_fee_currency': coursedetails.get("fee"),
+            'tuition_fee_duration_type': 'Annual ',
+            'application_fee': details_for_course.get("application_fee"), #TODoThese fields are there in overview section receive it as an arg
+            'application_fee_currency': details_for_course.get("application_fee_currency"),
+            'exam': exams,
+            'exam_section': [
+                'Avaiable??', #TODO: What's this thing?
+                'Available??'
+            ],# TODO: what's this exam section in course details section??
+            'exam_score': exams_score,
+            'date_type': None,#TODO:  the following are in overview page receive it as an arg
+            'season': None,
+            'date': None,
+        }
+    except IndexError:
+        pass
+    finally:
+        pass
+        return course_dtls
 
 if __name__ == "__main__":
 
@@ -237,14 +357,26 @@ if __name__ == "__main__":
     try:
         database = DBQueries()
         conx = database.connect("Institute")
-        ids_urls = database.get_records(conx, "SELECT * FROM institute_urls where institute_id>1000 order by institute_id limit 5")
+        ids_urls = database.get_records(conx, "SELECT * FROM institute_urls where institute_id>200 order by institute_id limit 4")
         conx.close()
         del database
         for id_url in ids_urls:
             institute_id = id_url[0]
             institute_url = id_url[1]
-            print(str(institute_id)+"=>"+institute_url)
-            scrape_institute(institute_url, institute_id)
+            print(str(institute_id) + "=>" + institute_url)
+            name, details_for_course = scrape_institute(institute_url, institute_id)
+            rurl_courses = scrape_rurl_courses(institute_url)
+            # print(rurl_courses)
+            courses_details = {
+                "name_of_the_university": name,
+                "courses": []
+            }
+            for rurl_course in rurl_courses:
+                # print(rurl_course)
+                course_dtls = scrape_course_details(rurl_course, details_for_course)
+                # print(course_dtls)
+                courses_details["courses"].append(course_dtls)
+            write_json(courses_details, institute_url.split('/')[-1] + "_courses")
     except ConnectionError:
         pass
     finally:

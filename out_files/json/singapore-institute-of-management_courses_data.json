@@ -1,0 +1,1391 @@
+{
+  "name_of_the_university": "Singapore Institute of Management (SIM)",
+  "courses": [
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Business (Management)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "8,11,077",
+      "tuition_fee_currency": "8,11,077",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "92",
+        "6.5",
+        "58"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Computer Science (Game and Mobile Development)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "5,85,778",
+      "tuition_fee_currency": "5,85,778",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "79",
+        "6",
+        "57"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Masters Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Master of Science International Business",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "1",
+      "duration_type": "Year",
+      "tuition_fees": "14,61,971",
+      "tuition_fee_currency": "14,61,971",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "88",
+        "6.5",
+        "Accepted"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Diploma Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Diploma in International Business",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "15",
+      "duration_type": "Months",
+      "tuition_fees": "4,95,658",
+      "tuition_fee_currency": "4,95,658",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "79",
+        "5.5",
+        "42"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Masters Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Master of Science in Supply Chain & Logistics Management",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "1",
+      "duration_type": "Year",
+      "tuition_fees": "18,50,243",
+      "tuition_fee_currency": "18,50,243",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "6.5",
+        "62"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Diploma Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Diploma in Banking and Finance",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "15",
+      "duration_type": "Months",
+      "tuition_fees": "6,19,573",
+      "tuition_fee_currency": "6,19,573",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "79",
+        "5.5",
+        "42"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Masters Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "MSc in Digital Marketing",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "1",
+      "duration_type": "Year",
+      "tuition_fees": "18,02,394",
+      "tuition_fee_currency": "18,02,394",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "92",
+        "6.5"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Science (Honours) in Computing and Information Systems",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "7,68,544",
+      "tuition_fee_currency": "7,68,544",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "87",
+        "6",
+        "54"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Science (Honours) in Accounting and Finance",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "5,94,832",
+      "tuition_fee_currency": "5,94,832",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "87",
+        "6",
+        "54"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Psychological Science",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "7,50,962",
+      "tuition_fee_currency": "7,50,962",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "79",
+        "6.5",
+        "57"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Science (Honours) in Economics",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "5,52,720",
+      "tuition_fee_currency": "5,52,720",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "87",
+        "6",
+        "54"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Masters Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Master of Science in Engineering Business Management",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "1",
+      "duration_type": "Year",
+      "tuition_fees": "18,50,243",
+      "tuition_fee_currency": "18,50,243",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "6.5",
+        "62"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Arts (Economics and Psychology)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "12,16,616",
+      "tuition_fee_currency": "12,16,616",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "79",
+        "6.5",
+        "55"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Business (Economics and Finance)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "8,11,077",
+      "tuition_fee_currency": "8,11,077",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "92",
+        "6.5",
+        "58"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Arts (Psychology)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "12,16,616",
+      "tuition_fee_currency": "12,16,616",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "79",
+        "6.5",
+        "55"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Business (Accountancy)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "7,43,487",
+      "tuition_fee_currency": "7,43,487",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "92",
+        "6.5",
+        "58"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Arts (Communication and Sociology)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "4",
+      "duration_type": "Years",
+      "tuition_fees": "9,65,681",
+      "tuition_fee_currency": "9,65,681",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "79",
+        "6.5",
+        "55"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Arts (International Trade and Psychology)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "4",
+      "duration_type": "Years",
+      "tuition_fees": "10,18,900",
+      "tuition_fee_currency": "10,18,900",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE",
+        "SAT"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "79",
+        "6.5",
+        "55",
+        "Accepted"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Science (Honours) International Business (Top-up)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "11,31,234",
+      "tuition_fee_currency": "11,31,234",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "6.5",
+        "59"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Business (Marketing)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "8,11,077",
+      "tuition_fee_currency": "8,11,077",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "92",
+        "6.5",
+        "58"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Arts (International Trade)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "12,16,616",
+      "tuition_fee_currency": "12,16,616",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "79",
+        "6.5",
+        "55"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Science (Honours) in Economics and Finance",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "8,11,077",
+      "tuition_fee_currency": "8,11,077",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "87",
+        "6",
+        "54"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Arts (Communication)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "12,16,616",
+      "tuition_fee_currency": "12,16,616",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "79",
+        "6.5",
+        "55"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Communication (Professional Communication)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "11,82,821",
+      "tuition_fee_currency": "11,82,821",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "92",
+        "6.5",
+        "58"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Masters Diploma Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Diploma for Graduates (Social Sciences)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "1",
+      "duration_type": "Year",
+      "tuition_fees": "4,84,288",
+      "tuition_fee_currency": "4,84,288",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "92",
+        "6"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Design (Communication Design) (Top-up)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "1",
+      "duration_type": "Year",
+      "tuition_fees": "11,82,821",
+      "tuition_fee_currency": "11,82,821",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "92",
+        "6.5",
+        "58"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Science (Honours) Business Management with Communications (Top-up)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "10,44,272",
+      "tuition_fee_currency": "10,44,272",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "6.5",
+        "Accepted"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Arts (Communication and Psychology)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "4",
+      "duration_type": "Years",
+      "tuition_fees": "9,55,153",
+      "tuition_fee_currency": "9,55,153",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "79",
+        "6.5",
+        "55"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Arts (Economics)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "12,16,616",
+      "tuition_fee_currency": "12,16,616",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "79",
+        "6.5",
+        "55"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Arts (Sociology)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "12,16,616",
+      "tuition_fee_currency": "12,16,616",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "79",
+        "6.5",
+        "55"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Arts (Psychology and Sociology)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "4",
+      "duration_type": "Years",
+      "tuition_fees": "10,18,900",
+      "tuition_fee_currency": "10,18,900",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "79",
+        "6.5",
+        "55"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Diploma Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Diploma in Accounting",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "15",
+      "duration_type": "Months",
+      "tuition_fees": "4,95,658",
+      "tuition_fee_currency": "4,95,658",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "79",
+        "5.5",
+        "42"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Business (Logistics & Supply Chain Management)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "8,11,077",
+      "tuition_fee_currency": "8,11,077",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "92",
+        "6.5",
+        "58"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Science (Business Administration) and Bachelor of Arts (Economics)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "4",
+      "duration_type": "Years",
+      "tuition_fees": "11,74,767",
+      "tuition_fee_currency": "11,74,767",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "79",
+        "6.5",
+        "55"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Science (Honours) in Business and Management",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "5,94,832",
+      "tuition_fee_currency": "5,94,832",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "87",
+        "6",
+        "54"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Science (Honours) Business Management (Top-up)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "8,95,564",
+      "tuition_fee_currency": "8,95,564",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "6.5",
+        "Accepted"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Science (Business Administration) and Bachelor of Arts (International Trade)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "12,16,616",
+      "tuition_fee_currency": "12,16,616",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "79",
+        "6.5",
+        "55"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Arts (Honours) Retail Marketing",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "10,13,846",
+      "tuition_fee_currency": "10,13,846",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "87",
+        "6"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "Bachelor of Science (Business Administration)",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "12,16,616",
+      "tuition_fee_currency": "12,16,616",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "PTE"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "79",
+        "6.5",
+        "55"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "Engineering",
+      "degree": "Bachelor of Architecture",
+      "specialization": "Architecture",
+      "course_name": "BSc Business",
+      "department/school": "ADBE City",
+      "mode": "Regular",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "20,39,853",
+      "tuition_fee_currency": "20,39,853",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "321"
+      ],
+      "application_fee_currency": "SGD",
+      "exam": [
+        "TOEFL",
+        "IELTS",
+        "SAT"
+      ],
+      "exam_section": [
+        "Avaiable??",
+        "Available??"
+      ],
+      "exam_score": [
+        "80",
+        "6.5",
+        "Accepted"
+      ],
+      "date_type": null,
+      "season": null,
+      "date": null
+    }
+  ]
+}

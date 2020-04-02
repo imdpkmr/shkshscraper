@@ -7,11 +7,19 @@ import re
 from database import DBQueries
 
 
-def write_json(details_dict, university_name=""):
+def write_json(details_dict, f_name=""):
     json_object = json.dumps(details_dict, indent=2)
-    filename = "out_files/json/" + university_name + "_data.json"
+    filename = "out_files/json/" + f_name + ".json"
     with open(filename, "w") as outfile:
         outfile.write(json_object)
+
+def dict_clean(dict):
+    result = {}
+    for key, value in dict.items():
+        if value is None:
+            value = ''
+        result[key] = value
+    return result
 
 
 def scrape_institute(url, id):
@@ -29,7 +37,7 @@ def scrape_institute(url, id):
         established_year = ''.join(filter(str.isdigit, established_year_))
         # print(established_year)
         institute.update({
-            "name": title,
+            "name": title.split('(')[0],
             "established_year": established_year,
             "institute_type": institute_type,
         })
@@ -78,10 +86,11 @@ def scrape_institute(url, id):
                 "on_campus_hostel": "No",
             })
         else:
-            # print(hostel)
+            hfee = hostel.split(' ')[1]
+            hfee = float(hfee)*100000
             institute_details.update({
                 "on_campus_hostel": "Yes",
-                "hostel_fee": ' '.join(hostel.split(' ')[1:]),
+                "hostel_fee": hfee,
                 "hostel_fee_currency_id": hostel.split(' ')[0],
             })
         # print(hostel.p.text)
@@ -89,6 +98,8 @@ def scrape_institute(url, id):
         pass
     except AttributeError:
         pass
+    except ValueError as ve:
+        print('error converting fee denomination', ve)
 
     # print(institute_details)
 
@@ -144,7 +155,10 @@ def scrape_institute(url, id):
                 intake_months.update({im: intake.text.split(' ')[-2]})
                 intake_index += 1
                 im = "intake_month_" + str(intake_index)
-        # print(intake_months)
+            intake_months.update({
+                "season": intakes[0].text.split(':')[0],
+                "date": intakes[0].text.split(':')[1]
+            })
     except IndexError:
         pass
     except AttributeError:
@@ -186,7 +200,7 @@ def scrape_institute(url, id):
                 "state": None,
                 "city": None,
                 "website": contact_details.get("website"),
-                "phone_nos": contact_details.get("phone_nos"),
+                "phone_no": contact_details.get("phone_nos"),
                 "fax": contact_details.get("fax"),
                 "email_address": contact_details.get("email_address"),
                 "main_campus_address": contact_details.get("main_address"),
@@ -209,7 +223,7 @@ def scrape_institute(url, id):
                 "intake_month": intake_months.get("intake_month"),
                 "intake_month_1": intake_months.get("intake_month_1"),
                 "intake_month_2": intake_months.get("intake_month_2"),
-            }
+            },
         }
         details_for_course = {
             'application_fee': apfee.get("application_fee"),
@@ -225,8 +239,10 @@ def scrape_institute(url, id):
     finally:
         pass
         # print(institute_dict)
-        return institute.get("name"), details_for_course
-        write_json(institute_dict, url.split('/')[-1])
+        institute_dict = dict_clean(institute_dict.get(institute.get("name")))
+        # print(institute_dict)
+        # write_json(institute_dict, url.split('/')[-1])
+        return institute.get("name"), details_for_course, institute_dict
 
 
 def scrape_rurl_courses(url):
@@ -312,38 +328,37 @@ def scrape_course_details(rurl, details_for_course):
     for exam, exam_score in exams_entrance.items():
         exams.append(exam.split(' ')[0])
         exams_score.append(exam_score)
-
-
     try:
         course_dtls = {
             'level': coursedetails.get("level_id"),
-            'stream': 'Engineering',# TODO: from where did you pick up the following
-            'degree': 'Bachelor of Architecture',
-            'specialization': 'Architecture',
+            'stream': '??',# TODO: from where did you pick up the following
+            'degree': '??',
+            'specialization': '??',
             'course_name': coursedetails.get("name"),
-            'department/school': 'ADBE City', #TODO: not there oon course details page
-            'mode': 'Regular', # TODO: not there in course details page
+            'department/school': '??', #TODO: not there oon course details page
+            'mode': '??', # TODO: not there in course details page
             'duration': coursedetails.get("course_duration"),
             'duration_type': coursedetails.get("duration_type"),
             'tuition_fees': coursedetails.get("fee"),#Styled__TableStyle-sc-10ucg51-0 vXiFr
             'tuition_fee_currency': coursedetails.get("fee"),
-            'tuition_fee_duration_type': 'Annual ',
+            'tuition_fee_duration_type': 'Annual ',#many don't have this
             'application_fee': details_for_course.get("application_fee"), #TODoThese fields are there in overview section receive it as an arg
             'application_fee_currency': details_for_course.get("application_fee_currency"),
             'exam': exams,
             'exam_section': [
-                'Avaiable??', #TODO: What's this thing?
-                'Available??'
+                '??', #TODO: What's this thing?
+                '??'
             ],# TODO: what's this exam section in course details section??
             'exam_score': exams_score,
-            'date_type': None,#TODO:  the following are in overview page receive it as an arg
-            'season': None,
-            'date': None,
+            'date_type': 'Application End Date',#TO ddDo the following are in overview page receive it as an arg
+            'season': coursedetails.get("season"),
+            'date': coursedetails.get("date"),
         }
     except IndexError:
         pass
     finally:
         pass
+        # course_dtls = dict_clean(course_dtls)# TODO uncomment this line when all values of course details are finalized.
         return course_dtls
 
 if __name__ == "__main__":
@@ -357,14 +372,16 @@ if __name__ == "__main__":
     try:
         database = DBQueries()
         conx = database.connect("Institute")
-        ids_urls = database.get_records(conx, "SELECT * FROM institute_urls where institute_id>200 order by institute_id limit 4")
+        ids_urls = database.get_records(conx, "SELECT * FROM institute_urls where institute_id>1800 order by institute_id limit 5")
         conx.close()
         del database
+        insts_dict = {}
         for id_url in ids_urls:
             institute_id = id_url[0]
             institute_url = id_url[1]
             print(str(institute_id) + "=>" + institute_url)
-            name, details_for_course = scrape_institute(institute_url, institute_id)
+            name, details_for_course, inst_dict = scrape_institute(institute_url, institute_id)
+            insts_dict.update({name: inst_dict})
             rurl_courses = scrape_rurl_courses(institute_url)
             # print(rurl_courses)
             courses_details = {
@@ -377,7 +394,9 @@ if __name__ == "__main__":
                 # print(course_dtls)
                 courses_details["courses"].append(course_dtls)
             write_json(courses_details, institute_url.split('/')[-1] + "_courses")
+        # print(insts_dict)
     except ConnectionError:
         pass
     finally:
+        write_json(insts_dict, "institutes")
         pass

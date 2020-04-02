@@ -1,0 +1,232 @@
+{
+  "name_of_the_university": "MiraCosta College",
+  "courses": [
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Associate in Arts in Accounting",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "5,46,639",
+      "tuition_fee_currency": "5,46,639",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "Fees"
+      ],
+      "application_fee_currency": "No",
+      "exam": [
+        "TOEFL",
+        "IELTS"
+      ],
+      "exam_section": [
+        "??",
+        "??"
+      ],
+      "exam_score": [
+        "46",
+        "5.5"
+      ],
+      "date_type": "Application End Date",
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Associate Degree in Art",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "4,25,400",
+      "tuition_fee_currency": "4,25,400",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "Fees"
+      ],
+      "application_fee_currency": "No",
+      "exam": [
+        "TOEFL"
+      ],
+      "exam_section": [
+        "??",
+        "??"
+      ],
+      "exam_score": [
+        "46"
+      ],
+      "date_type": "Application End Date",
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Associate Degree in Administration of Justice",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "4,25,400",
+      "tuition_fee_currency": "4,25,400",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "Fees"
+      ],
+      "application_fee_currency": "No",
+      "exam": [
+        "TOEFL"
+      ],
+      "exam_section": [
+        "??",
+        "??"
+      ],
+      "exam_score": [
+        "46"
+      ],
+      "date_type": "Application End Date",
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Associate in Arts in Automotive Technology",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "5,46,639",
+      "tuition_fee_currency": "5,46,639",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "Fees"
+      ],
+      "application_fee_currency": "No",
+      "exam": [
+        "TOEFL",
+        "IELTS"
+      ],
+      "exam_section": [
+        "??",
+        "??"
+      ],
+      "exam_score": [
+        "46",
+        "5.5"
+      ],
+      "date_type": "Application End Date",
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Associate Degree in Biotechnology",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "5,46,639",
+      "tuition_fee_currency": "5,46,639",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "Fees"
+      ],
+      "application_fee_currency": "No",
+      "exam": [
+        "TOEFL",
+        "IELTS"
+      ],
+      "exam_section": [
+        "??",
+        "??"
+      ],
+      "exam_score": [
+        "46",
+        "5.5"
+      ],
+      "date_type": "Application End Date",
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Associate in Arts in Computer science",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "6,46,608",
+      "tuition_fee_currency": "6,46,608",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "Fees"
+      ],
+      "application_fee_currency": "No",
+      "exam": [
+        "TOEFL",
+        "IELTS"
+      ],
+      "exam_section": [
+        "??",
+        "??"
+      ],
+      "exam_score": [
+        "46",
+        "5.5"
+      ],
+      "date_type": "Application End Date",
+      "season": null,
+      "date": null
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Associate in Science in Business Administration",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "6,46,608",
+      "tuition_fee_currency": "6,46,608",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": [
+        "Fees"
+      ],
+      "application_fee_currency": "No",
+      "exam": [
+        "TOEFL",
+        "IELTS"
+      ],
+      "exam_section": [
+        "??",
+        "??"
+      ],
+      "exam_score": [
+        "46",
+        "5.5"
+      ],
+      "date_type": "Application End Date",
+      "season": null,
+      "date": null
+    }
+  ]
+}

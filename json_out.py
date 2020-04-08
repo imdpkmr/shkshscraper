@@ -41,6 +41,20 @@ def scrape_institute(url, id):
             "established_year": established_year,
             "institute_type": institute_type,
         })
+        places = soup.find('span', attrs={"class": "loc-icn"}).text.split(',')
+        if(len(places) == 2):
+            # print('state does not exist', places)
+            institute.update({
+                "city": places[0].strip(),
+                "country": places[1].strip(),
+            })
+        elif(len(places) == 3):
+            # print('state exist', places)
+            institute.update({
+                "city": places[0].strip(),
+                "state": places[1].strip(),
+                "country": places[2].strip(),
+            })
     except AttributeError:
         pass
     except IndexError:
@@ -195,10 +209,10 @@ def scrape_institute(url, id):
                 "short_name": None,  # do we need to make it or get from the name of the insti
                 "establishment_year": institute.get("established_year"),
                 "institute_type": institute.get("institute_type"),
-                "country": None,
+                "country": institute.get("country"),
                 # need to use API to get next three fields as per the excel sheet, else this info can be extracted from the page itself
-                "state": None,
-                "city": None,
+                "state": institute.get("state"),
+                "city": institute.get("city"),
                 "website": contact_details.get("website"),
                 "phone_no": contact_details.get("phone_nos"),
                 "fax": contact_details.get("fax"),
@@ -372,7 +386,7 @@ if __name__ == "__main__":
     try:
         database = DBQueries()
         conx = database.connect("Institute")
-        ids_urls = database.get_records(conx, "SELECT * FROM institute_urls where institute_id>1800 order by institute_id limit 5")
+        ids_urls = database.get_records(conx, "SELECT * FROM institute_urls where institute_id>1500 order by institute_id limit 6")
         conx.close()
         del database
         insts_dict = {}
@@ -395,7 +409,7 @@ if __name__ == "__main__":
                 courses_details["courses"].append(course_dtls)
             write_json(courses_details, institute_url.split('/')[-1] + "_courses")
         # print(insts_dict)
-    except ConnectionError:
+    except (ConnectionError, ValueError):
         pass
     finally:
         write_json(insts_dict, "institutes")

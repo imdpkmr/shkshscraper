@@ -3,6 +3,8 @@ import json
 import requests
 from bs4 import BeautifulSoup
 import re
+import inspect
+
 
 from database import DBQueries
 
@@ -12,6 +14,10 @@ def write_json(details_dict, f_name=""):
     filename = "out_files/json/" + f_name + ".json"
     with open(filename, "w") as outfile:
         outfile.write(json_object)
+
+def lineno():
+    """Returns the current line number in our program."""
+    return inspect.currentframe().f_back.f_lineno
 
 def dict_clean(dict):
     result = {}
@@ -25,12 +31,9 @@ def dict_clean(dict):
 def scrape_institute(url, id):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
-    insert_queries = []
-
     institute = {}
     try:
         title = soup.find('h1', attrs={"class": "H1-sc-1225uyb-0 KmIux"}).text
-        # print(title)
         _, institute_type, established_year_ = soup.find('div', attrs={
             "class": "Styled__UnivLinks-sc-132amsi-4 gXZkCE"}).text.split('|')
         # print(institute_type)
@@ -61,7 +64,6 @@ def scrape_institute(url, id):
         pass
     except ValueError:
         pass
-
     contact_details = {}
     try:
         contacts = soup.find_all('div', attrs={"class": "Styled__ContactUsDiv-sc-1yl1nt-10 cNAOeO"})
@@ -187,7 +189,9 @@ def scrape_institute(url, id):
         inst_contact.update({"lat": lat_lng_url.split('/')[-1].split(',')[0]})
         inst_contact.update({"lng": lat_lng_url.split('/')[-1].split(',')[1]})
     except AttributeError as aerr:
-        print(aerr)
+        pass
+        # print(aerr)
+        # print(lineno())
     except IndexError as err:
         pass
     # print(lat_lng)
@@ -195,13 +199,12 @@ def scrape_institute(url, id):
     logo = {}
     try:
         logo_link_ = soup.find('img', attrs={"class": "Styled__ImageDiv-sc-5p2r35-0 gYjxkS"})
-        logo_link = logo_link_['src']
         # print(logo_link_)
+        logo_link = logo_link_['src']
         logo.update({"logo": logo_link})
-    except AttributeError:
+    except (AttributeError, IndexError, TypeError) as e:
         pass
-    except IndexError:
-        pass
+
     try:
         institute_dict = {
             institute.get("name"): {
@@ -288,9 +291,7 @@ def scrape_course_details(rurl, details_for_course):
             "level_id": course_details__[3].text,
         })
         # print(course_details__[1].text.split(' ')[0], course_details__[1].text.split(' ')[-1], course_details__[3].text)
-    except IndexError:
-        pass
-    except AttributeError:
+    except (IndexError, TypeError, AttributeError):
         pass
 
     try:
@@ -308,11 +309,7 @@ def scrape_course_details(rurl, details_for_course):
             "fee_currency_id": fees_[1].text.split(' ')[0],
             "fee": fees_[1].text.split(' ')[-1],
         })
-    except IndexError:
-        pass
-    except TypeError:
-        pass
-    except AttributeError:
+    except (IndexError, TypeError, AttributeError):
         pass
     # print(coursedetails)
 
@@ -332,11 +329,10 @@ def scrape_course_details(rurl, details_for_course):
             exams_entrance.update({
                 eexam.label.text: eexam.span.text,
             })
-    except IndexError:
-        pass
-    except TypeError:
+    except (IndexError, TypeError, AttributeError):
         pass
     # print(exams_entrance)
+
     exams = []
     exams_score = []
     for exam, exam_score in exams_entrance.items():
@@ -360,7 +356,7 @@ def scrape_course_details(rurl, details_for_course):
             'application_fee_currency': details_for_course.get("application_fee_currency"),
             'exam': exams,
             'exam_section': [
-                '??', #TODO: What's this thing?
+                '??',
                 '??'
             ],# TODO: what's this exam section in course details section??
             'exam_score': exams_score,
@@ -368,7 +364,7 @@ def scrape_course_details(rurl, details_for_course):
             'season': coursedetails.get("season"),
             'date': coursedetails.get("date"),
         }
-    except IndexError:
+    except (IndexError, TypeError, AttributeError):
         pass
     finally:
         pass
@@ -383,10 +379,14 @@ if __name__ == "__main__":
     #                 "https://studyabroad.shiksha.com/usa/universities/massachusetts-institute-of-technology",
     #                 "https://studyabroad.shiksha.com/usa/universities/california-state-university-los-angeles-campus"]
 
+    create_queries = [
+        f"CREATE TABLE universities ",
+        f"CREATE TABLE courses"
+    ]
     try:
         database = DBQueries()
         conx = database.connect("Institute")
-        ids_urls = database.get_records(conx, "SELECT * FROM institute_urls where institute_id>1500 order by institute_id limit 6")
+        ids_urls = database.get_records(conx, "SELECT * FROM institute_urls where institute_id>1500 order by institute_id limit 2")
         conx.close()
         del database
         insts_dict = {}

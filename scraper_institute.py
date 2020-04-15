@@ -3,7 +3,7 @@ import json
 import requests
 from bs4 import BeautifulSoup
 
-from shiksha.database import DBQueries
+from database import DBQueries
 
 
 def write_json(institute, university_name=""):
@@ -117,6 +117,9 @@ def scrape_institute(url, id):
                     "max_fee": application_fees[3]})
     except IndexError:
         pass
+    except AttributeError:
+        pass
+
 
     rank = {}
     intake = {}
@@ -254,7 +257,7 @@ if __name__ == "__main__":
         for q in queries:
             database._create_table(conx, q)
         cursor = conx.cursor()
-        cursor.execute("SELECT * FROM institute_urls order by institute_id limit 1")
+        cursor.execute("SELECT * FROM institute_urls where institute_id>7615 order by institute_id ")
         ids_urls = cursor.fetchall()
         cursor.close()
         for id_url in ids_urls:

@@ -1,0 +1,104 @@
+{
+  'Nottingham Trent University': {
+    'name_of_the_university': 'Nottingham Trent University',
+    'short_name': 'NTU',
+    'establishment_year': '1992.0',
+    'institute_type': 'Public',
+    'country': 'United Kingdom',
+    'state': 'England',
+    'city': 'Nottingham',
+    'website': 'https://www.ntu.ac.uk/',
+    'phone_no': '+44 115 941 8418',
+    'fax': '',
+    'email_address': 'international@ntu.ac.uk',
+    'main_campus_address': '50 Shakespeare St, Nottingham NG1 4FQ, United Kingdom',
+    'latitude': '52.9581° N',
+    'longitude': '1.1540° W',
+    'logo': '',
+    'brochure': 'https://www.ntu.ac.uk/__data/assets/pdf_file/0022/770044/2020-ntu-undergraduate-prospectus.pdf',
+    'no_of_programs': '2600.0',
+    'no_of_international_students': '500.0',
+    'international_student_%': '0.63',
+    'on_campus_hostel_availability': 'Yes',
+    'hostel_fee': '',
+    'hostel_fee_currency': '',
+    'qs_ranking': '701-750',
+    'qs_ranking_year': '2020.0',
+    'times_higher_education': '601–800',
+    'times_higher_education_year': '2020.0',
+    'usnews': '',
+    'usnews_year': '',
+    'intake_month': 'Feb',
+    'intake_month_1': 'March',
+    'intake_month_2': 'May'
+  },
+}
+
+and course for each college as a list of courses: PFB sample
+{
+  'name_of_the_university': 'Nottingham Trent University',
+  'courses': [
+    {
+      'level': 'Under Graduate',
+      'stream': 'Engineering',
+      'degree': 'Bachelor of Architecture',
+      'specialization': 'Architecture',
+      'course_name': 'BArch (Hons) Architecture (ARB/RIBA Part 1)',
+      'department/school': 'ADBE City',
+      'mode': 'Regular',
+      'duration': '3.0',
+      'duration_type': 'Years',
+      'tuition_fees': '14500.0',
+      'tuition_fee_currency': 'United Kingdom Pound',
+      'tuition_fee_duration_type': 'Annual ',
+      'application_fee': '20.0',
+      'application_fee_currency': 'United Kingdom Pound',
+      'exam': [
+        'TOEFL',
+        'IELTS'
+      ],
+      'exam_section': [
+        'Overall',
+        'Overall'
+      ],
+      'exam_score': [
+        '83.0',
+        '6.5'
+      ],
+      'date_type': 'Application End Date',
+      'season': 'June',
+      'date': '30, 2020'
+    },
+    {
+      'level': 'Under Graduate',
+      'stream': 'Creative Arts & Design',
+      'degree': 'Bachelor of Science',
+      'specialization': 'Music',
+      'course_name': 'BSc (Hons) Audio and Music Technology',
+      'department/school': 'Confetti Institute of Creative Technologies',
+      'mode': 'Regular',
+      'duration': '3.0',
+      'duration_type': 'Years',
+      'tuition_fees': '14500.0',
+      'tuition_fee_currency': 'United Kingdom Pound',
+      'tuition_fee_duration_type': 'Annual ',
+      'application_fee': '20.0',
+      'application_fee_currency': 'United Kingdom Pound',
+      'exam': [
+        'TOEFL',
+        'IELTS'
+      ],
+      'exam_section': [
+        'Overall',
+        'Overall'
+      ],
+      'exam_score': [
+        '83.0',
+        '6.5'
+      ],
+      'date_type': 'Application End Date',
+      'season': 'June',
+      'date': '30, 2020'
+    }
+  ]
+}

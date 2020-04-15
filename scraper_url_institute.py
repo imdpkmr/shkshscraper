@@ -6,7 +6,7 @@ import math
 # wb = Workbook()
 # add_sheet is used to create sheet.
 # sheet1 = wb.add_sheet('Sheet 1') # sheet1.write(1, 0, 'ISBT DEHRADUN') # wb.save('xlwt example.xls')
-from shiksha.database import DBQueries
+from database import DBQueries
 
 
 def scrape_url(p_url):
@@ -31,10 +31,9 @@ def scrape_url(p_url):
     return urls
 
 if __name__ == "__main__":
-    urls = [
-        "https://studyabroad.shiksha.com/be-btech-in-abroad-dc11510",
-        "https://studyabroad.shiksha.com/mba-in-abroad-dc11508",
-        "https://studyabroad.shiksha.com/ms-in-abroad-dc11509"]
+    urls = ["https://studyabroad.shiksha.com/be-btech-in-abroad-dc11510",
+            "https://studyabroad.shiksha.com/mba-in-abroad-dc11508",
+            "https://studyabroad.shiksha.com/ms-in-abroad-dc11509"]
     # "https://studyabroad.shiksha.com/certificate-diploma-in-engineering-in-abroad-cl1240",
     # "https://studyabroad.shiksha.com/certificate-diploma-in-business-in-abroad-cl1239",
     # "https://studyabroad.shiksha.com/certificate-diploma-in-computers-in-abroad-cl1241",

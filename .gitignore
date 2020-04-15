@@ -3,3 +3,5 @@ shiksha-env/
 __pycache__/
 shiksha-env/
 __pycache__/
+out_files/
+.idea/

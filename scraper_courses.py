@@ -3,7 +3,7 @@ import json
 import requests
 from bs4 import BeautifulSoup
 
-from shiksha.database import DBQueries
+from database import DBQueries
 
 def ins_query_maker(tablename, rowdict):
     keys = tuple(rowdict)
@@ -47,6 +47,8 @@ def scrape_courses( course_id, institute_id, url):
         # print(course_details__[1].text.split(' ')[0], course_details__[1].text.split(' ')[-1], course_details__[3].text)
     except IndexError:
         pass
+    except AttributeError:
+        pass
 
     try:
         courses_ = soup.find('div', attrs={"class": "Styled__WidgetHeading-opouq6-1 bSjtKj"})
@@ -67,11 +69,13 @@ def scrape_courses( course_id, institute_id, url):
         pass
     except TypeError:
         pass
+    except AttributeError:
+        pass
 
 
     try:
         courses = {
-            "insinstitutes_institutecourse": {
+            "institutes_institutecourse": {
                 "institute_id":institute_id,
                 "course_id":course_id,
                 "department": "NA",
@@ -80,7 +84,7 @@ def scrape_courses( course_id, institute_id, url):
                 "name": coursedetails.get("name"),
                 "level_id": coursedetails.get("level_id"),
             },
-            "institutes_institutecoursecommondetail": {
+            "institutes_institutecourse_commondetail": {
                 "institute_id":institute_id,
                 "course_id":course_id,
                 "mode": "NA",
@@ -92,8 +96,8 @@ def scrape_courses( course_id, institute_id, url):
             "institutes_institutecourse_specialization": "Manual",
         }
 
-        insert_queries.append(ins_query_maker("insinstitutes_institutecourse", courses["insinstitutes_institutecourse"]))
-        insert_queries.append(ins_query_maker("institutes_institutecoursecommondetail", courses["institutes_institutecoursecommondetail"]))
+        insert_queries.append(ins_query_maker("institutes_institutecourse", courses["institutes_institutecourse"]))
+        insert_queries.append(ins_query_maker("institutes_institutecourse_commondetail", courses["institutes_institutecourse_commondetail"]))
         insert_queries.append(f"INSERT INTO institutes_institutecourse_specialization(institute_id,course_id, specialization) values({institute_id},{course_id},'{courses.get('institutes_institutecourse_specialization')}')")
 
         return  insert_queries
@@ -113,8 +117,8 @@ if __name__ == "__main__":
     # ]
 
     create_queries = [
-        f"CREATE TABLE IF NOT EXISTS insinstitutes_institutecourse(institute_id INT, course_id INT,  department VARCHAR(100), degree_id VARCHAR(100), stream_id VARCHAR(100), name VARCHAR(100), level_id VARCHAR(100),FOREIGN KEY (course_id) REFERENCES url_courses(course_id), FOREIGN KEY (institute_id) REFERENCES institute_urls(institute_id))",
-        f"CREATE TABLE IF NOT EXISTS institutes_institutecoursecommondetail(institute_id INT,course_id INT, mode VARCHAR(100), course_duration VARCHAR(100), duration_type VARCHAR(100), fee VARCHAR(100), fee_currency_id VARCHAR(100), FOREIGN KEY (institute_id) REFERENCES institute_urls(institute_id), FOREIGN KEY (course_id) REFERENCES url_courses(course_id))",
+        f"CREATE TABLE IF NOT EXISTS institutes_institutecourse(institute_id INT, course_id INT,  department VARCHAR(100), degree_id VARCHAR(100), stream_id VARCHAR(100), name VARCHAR(100), level_id VARCHAR(100),FOREIGN KEY (course_id) REFERENCES url_courses(course_id), FOREIGN KEY (institute_id) REFERENCES institute_urls(institute_id))",
+        f"CREATE TABLE IF NOT EXISTS institutes_institutecourse_commondetail(institute_id INT,course_id INT, mode VARCHAR(100), course_duration VARCHAR(100), duration_type VARCHAR(100), fee VARCHAR(100), fee_currency_id VARCHAR(100), FOREIGN KEY (institute_id) REFERENCES institute_urls(institute_id), FOREIGN KEY (course_id) REFERENCES url_courses(course_id))",
         f"CREATE TABLE IF NOT EXISTS institutes_institutecourse_specialization(institute_id INT, course_id INT,  specialization VARCHAR(100), FOREIGN KEY (institute_id) REFERENCES institute_urls(institute_id), FOREIGN KEY (course_id) REFERENCES url_courses(course_id))"
     ]
     try:
@@ -122,13 +126,13 @@ if __name__ == "__main__":
         conx = database.connect("Institute")
         for query in create_queries:
             database._create_table(conx, query)
-        cid_iid_rurls = database.get_records(conx, f"select course_id, institute_id, course_rel_url from url_courses order by course_id limit 2")
+        cid_iid_rurls = database.get_records(conx, f"select course_id, institute_id, course_rel_url from url_courses where course_id  > 15477054 order by institute_id, course_id ")
         for cid_iid_rurl in cid_iid_rurls:
             course_id = cid_iid_rurl[0]
             institute_id = cid_iid_rurl[1]
             rurl = cid_iid_rurl[2]
             url = "https://studyabroad.shiksha.com" + rurl
-            print(url)
+            print(institute_id, course_id, url)
             # print(str(id)+"=>"+rurl)
             # for url in urls:
             #     print('scraping ', url)
@@ -137,6 +141,8 @@ if __name__ == "__main__":
                 database.insert_record(conx, query)
             conx.commit()
     except ConnectionError:
+        pass
+    except OSError:
         pass
     finally:
         conx.commit()

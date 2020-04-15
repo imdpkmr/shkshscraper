@@ -4,9 +4,9 @@ Create datbase in mysql database and store it's name in locals.py in DB_NAME exe
 import mysql.connector
 from mysql.connector import Error
 
-DB_HOST="localhost"
-DB_USER="root"
-DB_PASSWORD="root"
+DB_HOST = "localhost"
+DB_USER = "root"
+DB_PASSWORD ="root"
 
 
 

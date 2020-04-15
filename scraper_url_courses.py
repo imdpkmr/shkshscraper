@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from shiksha.database import DBQueries
+from database import DBQueries
 
 
 def scrape_courses_url(url):
@@ -9,8 +9,10 @@ def scrape_courses_url(url):
     soup = BeautifulSoup(response.content, "html.parser")
     links__ = soup.find_all('a', attrs={"class": "Styled__LinkStyle-sc-19aj422-2 jRTEUB"})
     for l in links__:
-        urls.append(l['href'])
-        # print(l['href'])
+        link = l['href']
+        if link not in urls:
+            urls.append(link)
+            # print(link)
     return urls
 
 
@@ -19,16 +21,16 @@ if __name__ == "__main__":
         database = DBQueries()
         conx = database.connect("Institute")
         cursor = conx.cursor()
-        url_course_table_query = f"CREATE TABLE IF NOT EXISTS url_courses(course_id INT PRIMARY KEY  AUTO_INCREMENT, institute_id INT, course_rel_url VARCHAR(200), FOREIGN KEY (institute_id) REFERENCES institute_urls(institute_id))"
+        url_course_table_query = f"CREATE TABLE IF NOT EXISTS url_courses(course_id INT PRIMARY KEY  AUTO_INCREMENT, institute_id INT, course_rel_url VARCHAR(200) UNIQUE , FOREIGN KEY (institute_id) REFERENCES institute_urls(institute_id))"
         cursor.execute(url_course_table_query)
-        cursor.execute("select institute_id, institute_url from institute_urls order by institute_id limit 2")
+        cursor.execute("select institute_id, institute_url from institute_urls where institute_id > 7636 order by institute_id ")
         id_urls = cursor.fetchall()
         queries = []
         for id_url in id_urls:
             id = id_url[0]
             url = id_url[1]
             # print(str(id)+"=>"+url)
-            print(f'scraping {url}/courses ')
+            print(id, f'scraping {url}/courses ')
             url_courses = scrape_courses_url(url)
             # print(url_courses)
             for url_course in url_courses:

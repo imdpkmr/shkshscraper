@@ -3,8 +3,9 @@ import re
 
 import requests
 from bs4 import BeautifulSoup
+from multiprocessing import Pool
 
-from shiksha.database import DBQueries
+from database import DBQueries
 
 def ins_query_maker(tablename, rowdict):
     keys = tuple(rowdict)
@@ -50,10 +51,6 @@ def scrape_exams(institute_id, course_id, url):
             exams_entrance.update({
                 eexam.label.text: eexam.span.text,
             })
-        # for link in links:
-        #     if link.find(text=re.compile("Edit")):
-        #         thelink = link
-        #         break
     except IndexError:
         pass
     except TypeError:
@@ -72,9 +69,12 @@ def scrape_exams(institute_id, course_id, url):
                 "gmat": exams_entrance.get("GMAT :"),
             }
         }
-        insert_queries.append(ins_query_maker("institutes_instituteexamrelation", exam["institutes_instituteexamrelation"]))
+        insert_queries.append(ins_query_maker("institutes_institute_examrelation", exam["institutes_instituteexamrelation"]))
         return insert_queries
     except IndexError:
+        pass
+    except ConnectionError:
+        print("*<>*<>*",url)
         pass
     finally:
         pass
@@ -89,22 +89,27 @@ if __name__ == "__main__":
     #     "https://studyabroad.shiksha.com/usa/universities/harvard-university/masters-in-computer-science"
     # ]
 
-    create_queries = f"CREATE TABLE IF NOT EXISTS institutes_instituteexamrelation(institute_id INT, course_id INT, toefl VARCHAR(100), ielts VARCHAR(100), pte VARCHAR(100), gre VARCHAR(100), gmat VARCHAR(100), FOREIGN KEY (institute_id) REFERENCES institute_urls(institute_id), FOREIGN KEY (course_id) REFERENCES url_courses(course_id))"
     try:
         database = DBQueries()
         conx = database.connect("Institute")
+        create_queries = f"CREATE TABLE IF NOT EXISTS institutes_institute_examrelation(institute_id INT, course_id INT, toefl VARCHAR(100), ielts VARCHAR(100), pte VARCHAR(100), gre VARCHAR(100), gmat VARCHAR(100), FOREIGN KEY (institute_id) REFERENCES institute_urls(institute_id), FOREIGN KEY (course_id) REFERENCES url_courses(course_id))"
         database._create_table(conx, create_queries)
-        cid_iid_rurls = database.get_records(conx, f"select course_id, institute_id, course_rel_url from url_courses order by course_id limit 2")
+        cid_iid_rurls = database.get_records(conx, f"select course_id, institute_id, course_rel_url from url_courses where course_id > 608474 order by institute_id, course_id")
+        conx.close()
         for cid_iid_rurl in cid_iid_rurls:
             course_id = cid_iid_rurl[0]
             institute_id = cid_iid_rurl[1]
             rurl = cid_iid_rurl[2]
             url = "https://studyabroad.shiksha.com" + rurl
+            print(institute_id, course_id, url)
             insert_queries = scrape_exams(institute_id, course_id, url)
+            conx = database.connect("Institute")
             for query in insert_queries:
                 database.insert_record(conx, query)
             conx.commit()
+            conx.close()
     except ConnectionError:
         pass
     finally:
         conx.commit()
+        conx.close()

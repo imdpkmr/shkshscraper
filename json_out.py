@@ -530,7 +530,6 @@ def object_execution():
             insts_dict = {}
             for id_url in ids_urls:
                 print('sleep for 1 second at ', datetime.datetime.now())
-                sleep(1)
                 institute_id = id_url[0]
                 institute_url = id_url[1]
                 print(str(institute_id) + "=>" + institute_url)
@@ -559,7 +558,6 @@ def object_execution():
                 database.update_record(conx, f"UPDATE institute_urls SET is_scraped = true WHERE institute_id = {institute_id}")
                 conx.commit()
                 conx.close()
-
             # print(insts_dict)
 
         except (ConnectionError, ValueError):
@@ -588,7 +586,6 @@ def monitor():
 
 
 if __name__ == '__main__':
-
     monitor()
 
 

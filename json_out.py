@@ -1,9 +1,10 @@
 import json
-
 import requests
 from bs4 import BeautifulSoup
 import re
 import inspect
+from time import sleep
+import datetime
 import sys
 
 
@@ -459,7 +460,7 @@ if __name__ == "__main__":#todo change it to original
     try:
         database = DBQueries()
         conx = database.connect("Institute")
-        ids_urls = database.get_records(conx, "SELECT * FROM institute_urls where institute_id>0 order by institute_id")
+        ids_urls = database.get_records(conx, "SELECT * FROM institute_urls where institute_id > 898 order by institute_id")
         conx.close()
         conxx = database.connect("ShikshaData")
         inst_table = f"CREATE TABLE IF NOT EXISTS institutes(" \
@@ -494,7 +495,9 @@ if __name__ == "__main__":#todo change it to original
                      f"usnews_year VARCHAR(400)," \
                      f"intake_month VARCHAR(400)," \
                      f"intake_month_1 VARCHAR(400)," \
-                     f"intake_month_2 VARCHAR(400))"
+                     f"intake_month_2 VARCHAR(400)" \
+                     f")"
+
         course_table_query = f"CREATE TABLE courses(" \
                              f"name_of_the_university VARCHAR(400)," \
                              f"level VARCHAR(400)," \
@@ -527,6 +530,8 @@ if __name__ == "__main__":#todo change it to original
 
         insts_dict = {}
         for id_url in ids_urls:
+            print('sleep for 1 second at ', datetime.datetime.now())
+            sleep(1)
             institute_id = id_url[0]
             institute_url = id_url[1]
             print(str(institute_id) + "=>" + institute_url)

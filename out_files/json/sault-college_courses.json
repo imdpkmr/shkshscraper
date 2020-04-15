@@ -1,0 +1,69 @@
+{
+  "name_of_the_university": "Sault College",
+  "courses": [
+    {
+      "level": "Masters Certificate Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Graduate Certificate in Business Management",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "12",
+      "duration_type": "Months",
+      "tuition_fees": "7,33,590",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Diploma Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Diploma in Computer Programmer",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "7,33,590",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Diploma Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Diploma in Mechanical Engineering Technician - Manufacturing",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "7,33,590",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Diploma Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Diploma in Electrical Engineering Technician - Process Automation",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "7,33,590",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    }
+  ]
+}

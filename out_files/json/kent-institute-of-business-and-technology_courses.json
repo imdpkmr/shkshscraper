@@ -1,0 +1,69 @@
+{
+  "name_of_the_university": "Kent Institute of Business and Technology",
+  "courses": [
+    {
+      "level": "Bachelors Diploma Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Diploma of Digital Media Technologies",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "7",
+      "duration_type": "Months",
+      "tuition_fees": "1,90,905",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Certificate Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Certificate IV in Web Based Technologies",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "24",
+      "duration_type": "Weeks",
+      "tuition_fees": "1,90,905",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Diploma Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Diploma of Business",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "6",
+      "duration_type": "Months",
+      "tuition_fees": "1,90,905",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Diploma Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Diploma of Marketing",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "6",
+      "duration_type": "Months",
+      "tuition_fees": "1,90,905",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    }
+  ]
+}

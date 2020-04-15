@@ -46,7 +46,7 @@ class DBQueries:
         try:
             cursor = connection.cursor(buffered=True)
             cursor.execute(query)
-            # print('record inserted')
+            print('record inserted')
         except Error as e:
             print('Error inserting record ', e)
             print(query)
@@ -66,7 +66,7 @@ class DBQueries:
 
 if __name__ == '__main__':
     database = DBQueries()
-    conx = database.connect()
+    conx = database.connect("Institute")
 
     conx.commit()
 

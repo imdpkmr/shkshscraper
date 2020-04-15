@@ -1,4 +1,8 @@
 import json
+import multiprocessing
+import time
+import traceback
+
 import requests
 from bs4 import BeautifulSoup
 import re
@@ -449,121 +453,143 @@ def get_college_json():
     write_json(insts_dict, "institutes_all")
 
 
-
-if __name__ == "__main__":#todo change it to original
-    # get_college_json()
-    # sys.exit()
-    createqueries = [
-        f"CREATE TABLE universities ",
-        f"CREATE TABLE courses"
-    ]
+def object_execution():
     try:
-        database = DBQueries()
-        conx = database.connect("Institute")
-        ids_urls = database.get_records(conx, "SELECT * FROM institute_urls where institute_id > 898 order by institute_id")
-        conx.close()
-        conxx = database.connect("ShikshaData")
-        inst_table = f"CREATE TABLE IF NOT EXISTS institutes(" \
-                     f"inst_id INT ," \
-                     f"name_of_the_university VARCHAR(400)," \
-                     f"short_name VARCHAR(400)," \
-                     f"establishment_year VARCHAR(400)," \
-                     f"institute_type VARCHAR(400)," \
-                     f"country VARCHAR(400)," \
-                     f"state VARCHAR(400)," \
-                     f"city VARCHAR(400)," \
-                     f"website VARCHAR(400)," \
-                     f"phone_no VARCHAR(400)," \
-                     f"fax VARCHAR(400)," \
-                     f"email_address VARCHAR(400)," \
-                     f"main_campus_address VARCHAR(400)," \
-                     f"latitude VARCHAR(400)," \
-                     f"longitude VARCHAR(400)," \
-                     f"logo VARCHAR(400)," \
-                     f"brochure VARCHAR(400)," \
-                     f"no_of_programs VARCHAR(400)," \
-                     f"no_of_international_students VARCHAR(400)," \
-                     f"`international_student_%` VARCHAR(400)," \
-                     f"on_campus_hostel_availability VARCHAR(400)," \
-                     f"hostel_fee VARCHAR(400)," \
-                     f"hostel_fee_currency VARCHAR(400)," \
-                     f"qs_ranking VARCHAR(400)," \
-                     f"qs_ranking_year VARCHAR(400)," \
-                     f"times_higher_education VARCHAR(400)," \
-                     f"times_higher_education_year VARCHAR(400)," \
-                     f"usnews VARCHAR(400)," \
-                     f"usnews_year VARCHAR(400)," \
-                     f"intake_month VARCHAR(400)," \
-                     f"intake_month_1 VARCHAR(400)," \
-                     f"intake_month_2 VARCHAR(400)" \
-                     f")"
+        try:
+            database = DBQueries()
+            conx = database.connect("Institute")
+            ids_urls = database.get_records(conx, "SELECT * FROM institute_urls where is_scraped = false order by institute_id")
+            conx.close()
 
-        course_table_query = f"CREATE TABLE courses(" \
-                             f"name_of_the_university VARCHAR(400)," \
-                             f"level VARCHAR(400)," \
-                             f"stream VARCHAR(400)," \
-                             f"degree VARCHAR(400)," \
-                             f"specialization VARCHAR(400)," \
-                             f"course_name VARCHAR(400)," \
-                             f"`department\school` VARCHAR(400)," \
-                             f"mode VARCHAR(400)," \
-                             f"duration VARCHAR(400)," \
-                             f"duration_type VARCHAR(400)," \
-                             f"tuition_fees VARCHAR(400)," \
-                             f"tuition_fees_currency VARCHAR(400)," \
-                             f"tuition_fees_duration_type VARCHAR(400)," \
-                             f"application_fee VARCHAR(400)," \
-                             f"application_fee_currency VARCHAR(400)," \
-                             f"date_type VARCHAR(400)," \
-                             f"season VARCHAR(400)," \
-                             f"date VARCHAR(400)" \
-                             f")"
-        database._create_table(conxx, inst_table)
-        conxx.commit()
-        conxx.close()
+            # inst_table = f"CREATE TABLE IF NOT EXISTS institutes(" \
+            #              f"inst_id INT ," \
+            #              f"name_of_the_university VARCHAR(400)," \
+            #              f"short_name VARCHAR(400)," \
+            #              f"establishment_year VARCHAR(400)," \
+            #              f"institute_type VARCHAR(400)," \
+            #              f"country VARCHAR(400)," \
+            #              f"state VARCHAR(400)," \
+            #              f"city VARCHAR(400)," \
+            #              f"website VARCHAR(400)," \
+            #              f"phone_no VARCHAR(400)," \
+            #              f"fax VARCHAR(400)," \
+            #              f"email_address VARCHAR(400)," \
+            #              f"main_campus_address VARCHAR(400)," \
+            #              f"latitude VARCHAR(400)," \
+            #              f"longitude VARCHAR(400)," \
+            #              f"logo VARCHAR(400)," \
+            #              f"brochure VARCHAR(400)," \
+            #              f"no_of_programs VARCHAR(400)," \
+            #              f"no_of_international_students VARCHAR(400)," \
+            #              f"`international_student_%` VARCHAR(400)," \
+            #              f"on_campus_hostel_availability VARCHAR(400)," \
+            #              f"hostel_fee VARCHAR(400)," \
+            #              f"hostel_fee_currency VARCHAR(400)," \
+            #              f"qs_ranking VARCHAR(400)," \
+            #              f"qs_ranking_year VARCHAR(400)," \
+            #              f"times_higher_education VARCHAR(400)," \
+            #              f"times_higher_education_year VARCHAR(400)," \
+            #              f"usnews VARCHAR(400)," \
+            #              f"usnews_year VARCHAR(400)," \
+            #              f"intake_month VARCHAR(400)," \
+            #              f"intake_month_1 VARCHAR(400)," \
+            #              f"intake_month_2 VARCHAR(400)" \
+            #              f")"
 
-        ct_conx = database.connect("ShikshaData")
-        database._create_table(ct_conx, course_table_query)
-        ct_conx.commit()
-        ct_conx.close
+            # course_table_query = f"CREATE TABLE IF NOT EXISTS courses(" \
+            #                      f"name_of_the_university VARCHAR(400)," \
+            #                      f"level VARCHAR(400)," \
+            #                      f"stream VARCHAR(400)," \
+            #                      f"degree VARCHAR(400)," \
+            #                      f"specialization VARCHAR(400)," \
+            #                      f"course_name VARCHAR(400)," \
+            #                      f"`department\school` VARCHAR(400)," \
+            #                      f"mode VARCHAR(400)," \
+            #                      f"duration VARCHAR(400)," \
+            #                      f"duration_type VARCHAR(400)," \
+            #                      f"tuition_fees VARCHAR(400)," \
+            #                      f"tuition_fees_currency VARCHAR(400)," \
+            #                      f"tuition_fees_duration_type VARCHAR(400)," \
+            #                      f"application_fee VARCHAR(400)," \
+            #                      f"application_fee_currency VARCHAR(400)," \
+            #                      f"date_type VARCHAR(400)," \
+            #                      f"season VARCHAR(400)," \
+            #                      f"date VARCHAR(400)" \
+            #                      f")"
+
+            # conxx = database.connect("ShikshaData")
+            # database._create_table(conxx, inst_table)
+            # conxx.commit()
+            # conxx.close()
+
+            # ct_conx = database.connect("ShikshaData")
+            # database._create_table(ct_conx, course_table_query)
+            # ct_conx.commit()
+            # ct_conx.close
+
+            insts_dict = {}
+            for id_url in ids_urls:
+                print('sleep for 1 second at ', datetime.datetime.now())
+                sleep(1)
+                institute_id = id_url[0]
+                institute_url = id_url[1]
+                print(str(institute_id) + "=>" + institute_url)
+                name, details_for_course, inst_dict = scrape_institute(institute_url, institute_id)
+                # print(inst_dict)
+                # inst_record = ins_query_maker("institutes", inst_dict)
+                # conxxx = database.connect("ShikshaData")
+                # print(inst_record)
+                # database.insert_record(conxxx, inst_record)
+                # conxxx.commit()
+                # conxxx.close()
+                # insts_dict.update({name: inst_dict})
+                rurl_courses = scrape_rurl_courses(institute_url)  # todo course details
+                # print(rurl_courses)
+                courses_details = {
+                    "name_of_the_university": name,
+                    "courses": []
+                }
+                # print(details_for_course)
+                for rurl_course in rurl_courses:
+                    course_dtls = scrape_course_details(rurl_course, details_for_course)
+                    # print(course_dtls)
+                    courses_details["courses"].append(course_dtls)
+                write_json(courses_details, institute_url.split('/')[-1] + "_courses")
+                conx = database.connect("Institute")
+                database.update_record(conx, f"UPDATE institute_urls SET is_scraped = true WHERE institute_id = {institute_id}")
+                conx.commit()
+                conx.close()
+
+            # print(insts_dict)
+
+        except (ConnectionError, ValueError):
+            pass
+        finally:
+            # write_json(insts_dict, "institutes")
+            del database
+            pass
+        exit(2)
+    except Exception:
+        traceback.print_exc()
+        exit(0)
 
 
-        insts_dict = {}
-        for id_url in ids_urls:
-            print('sleep for 1 second at ', datetime.datetime.now())
-            sleep(1)
-            institute_id = id_url[0]
-            institute_url = id_url[1]
-            print(str(institute_id) + "=>" + institute_url)
-            name, details_for_course, inst_dict = scrape_institute(institute_url, institute_id)
-            # print(inst_dict)
-            # inst_record = ins_query_maker("institutes", inst_dict)
-            # conxxx = database.connect("ShikshaData")
-            # print(inst_record)
-            # database.insert_record(conxxx, inst_record)
-            # conxxx.commit()
-            # conxxx.close()
-            # insts_dict.update({name: inst_dict})
-            rurl_courses = scrape_rurl_courses(institute_url)#todo course details
-            # print(rurl_courses)
-            courses_details = {
-                "name_of_the_university": name,
-                "courses": []
-            }
-            # print(details_for_course)
-            for rurl_course in rurl_courses:
-                course_dtls = scrape_course_details(rurl_course, details_for_course)
-                # print(course_dtls)
-                courses_details["courses"].append(course_dtls)
-            write_json(courses_details, institute_url.split('/')[-1] + "_courses")
-        # print(insts_dict)
 
-    except (ConnectionError, ValueError):
-        pass
-    finally:
-        # write_json(insts_dict, "institutes")
-        del database
-        pass
+def monitor():
+    while 1:
+        print("Inside monitor() method....")
+        proc = multiprocessing.Process(target=object_execution)
+        proc.start()
+        proc.join()
+        if proc.exitcode == 15:
+            print('something went wrong... terminating')
+            exit(proc.exitcode)
+            time.sleep(120)
+
+
+if __name__ == '__main__':
+
+    monitor()
 
 
 
@@ -574,12 +600,26 @@ if __name__ == "__main__":#todo change it to original
 
 
 
+# def object_execution():
+#     try:
+#         #
+#         # Scrapper code
+#         #
+#         exit(2)
+#     except Exception:
+#         traceback.print_exc()
+#         exit(0)
 
+# def monitor():
+#     while 1:
+#         print("Inside monitor() method....")
+#         proc = multiprocessing.Process(target=object_execution)
+#         proc.start()
+#         proc.join()
+#         if proc.exitcode == 15:
+#             print('something went wrong... terminating')
+#             exit(proc.exitcode)
+#             time.sleep(120)
 
-
-# universities = ["https://studyabroad.shiksha.com/usa/universities/stanford-university",
-#                 "https://studyabroad.shiksha.com/usa/universities/arizona-state-university",
-#                 "https://studyabroad.shiksha.com/usa/universities/the-university-of-texas-at-dallas",
-#                 "https://studyabroad.shiksha.com/usa/universities/massachusetts-institute-of-technology",
-#                 "https://studyabroad.shiksha.com/usa/universities/california-state-university-los-angeles-campus"]
-
+# if _name_ == '_main_':
+#     monitor()

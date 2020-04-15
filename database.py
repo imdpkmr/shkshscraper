@@ -64,6 +64,17 @@ class DBQueries:
             cursor.close
 
 
+    def update_record(self, connection, query):
+        try:
+            cursor = connection.cursor(buffered=True)
+            cursor.execute(query)
+            # print('record updated')
+        except Error as e:
+            print('Error updating record ', e)
+            print(query)
+        finally:
+            cursor.close()
+
 if __name__ == '__main__':
     database = DBQueries()
     conx = database.connect("Institute")

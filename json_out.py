@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import inspect
+import sys
 
 
 from database import DBQueries
@@ -14,6 +15,26 @@ def write_json(details_dict, f_name=""):
     filename = "out_files/json/" + f_name + ".json"
     with open(filename, "w") as outfile:
         outfile.write(json_object)
+
+def ins_query_maker(tablename, rowdict):
+    keys = tuple(rowdict)
+    dictsize = len(rowdict)
+    sql = ''
+    for i in range(dictsize):
+        if (type(rowdict[keys[i]]).__name__ == 'str'):
+            sql += '"' + str(rowdict[keys[i]]) + '"'
+        else:
+            sql += str(rowdict[keys[i]])
+        if (i < dictsize - 1):
+            sql += ', '
+    keys = list(keys)
+    for idx, value in enumerate(keys):
+        keys[idx] = '`'+value+'`'
+    columns = ', '.join(keys)
+    query = "insert into " + str(tablename) + " (" + columns + ") values(" + sql + ")"
+    query = query.replace("None", "null")
+    # print(query) # for demo purposes we do this
+    return (query)  # in real code we do this
 
 def lineno():
     """Returns the current line number in our program."""
@@ -40,7 +61,7 @@ def scrape_institute(url, id):
         established_year = ''.join(filter(str.isdigit, established_year_))
         # print(established_year)
         institute.update({
-            "name": title.split('(')[0],
+            "name": title.split('(')[0].strip(),
             "established_year": established_year,
             "institute_type": institute_type,
         })
@@ -103,7 +124,7 @@ def scrape_institute(url, id):
             })
         else:
             hfee = hostel.split(' ')[1]
-            hfee = float(hfee)*100000
+            # hfee = float(hfee)*100000
             institute_details.update({
                 "on_campus_hostel": "Yes",
                 "hostel_fee": hfee,
@@ -208,12 +229,12 @@ def scrape_institute(url, id):
     try:
         institute_dict = {
             institute.get("name"): {
+                "inst_id": id,
                 "name_of_the_university": institute.get("name"),
                 "short_name": None,  # do we need to make it or get from the name of the insti
                 "establishment_year": institute.get("established_year"),
                 "institute_type": institute.get("institute_type"),
                 "country": institute.get("country"),
-                # need to use API to get next three fields as per the excel sheet, else this info can be extracted from the page itself
                 "state": institute.get("state"),
                 "city": institute.get("city"),
                 "website": contact_details.get("website"),
@@ -253,6 +274,8 @@ def scrape_institute(url, id):
         print('key: value not found')
     except ValueError as str_err:
         print('error while parsing string' + str_err.message)
+    except AttributeError:
+        pass
     finally:
         pass
         # print(institute_dict)
@@ -376,26 +399,138 @@ def scrape_course_details(rurl, details_for_course):
         # course_dtls = dict_clean(course_dtls)# TODO uncomment this line when all values of course details are finalized.
         return course_dtls
 
-if __name__ == "__main__":
+def get_college_json():
+    database = DBQueries()
+    conx = database.connect("ShikshaData")
+    data = database.get_records(conx, "select * from institutes")
+    insts_dict= {}
+    for datum in data:
+        # print(datum)
+        inst_dict = {
+            datum[1]: {
+                "name_of_the_university": datum[1],
+                "short_name": datum[2],  # do we need to make it or get from the name of the insti
+                "establishment_year": datum[3],
+                "institute_type": datum[4],
+                "country": datum[5],
+                "state": datum[6],
+                "city": datum[7],
+                "website": datum[8],
+                "phone_no": datum[9],
+                "fax": datum[10],
+                "email_address": datum[11],
+                "main_campus_address": datum[12],
+                "latitude": datum[13],
+                "longitude": datum[14],
+                "logo": datum[15],
+                "brochure": datum[16],
+                "no_of_programs": datum[17],
+                "no_of_international_students": datum[18],
+                "international_student_%": datum[19],
+                "on_campus_hostel_availability": datum[20],
+                "hostel_fee": datum[21],
+                "hostel_fee_currency": datum[22],
+                "qs_ranking": datum[23],
+                "qs_ranking_year": datum[24],
+                "times_higher_education": datum[25],
+                "times_higher_education_year": datum[26],
+                "usnews": datum[27],
+                "usnews_year": datum[28],
+                "intake_month": datum[29],
+                "intake_month_1": datum[30],
+                "intake_month_2": datum[31],
+            },
+        }
+        insts_dict.update(inst_dict)
+    # print(insts_dict)
+    write_json(insts_dict, "institutes_all")
 
-    create_queries = [
+
+
+if __name__ == "__main__":#todo change it to original
+    # get_college_json()
+    # sys.exit()
+    createqueries = [
         f"CREATE TABLE universities ",
         f"CREATE TABLE courses"
     ]
     try:
         database = DBQueries()
         conx = database.connect("Institute")
-        ids_urls = database.get_records(conx, "SELECT * FROM institute_urls where institute_id order by institute_id limit 5")
+        ids_urls = database.get_records(conx, "SELECT * FROM institute_urls where institute_id>8576 order by institute_id")
         conx.close()
+        conxx = database.connect("ShikshaData")
+        inst_table = f"CREATE TABLE IF NOT EXISTS institutes(" \
+                     f"inst_id INT ," \
+                     f"name_of_the_university VARCHAR(400)," \
+                     f"short_name VARCHAR(400)," \
+                     f"establishment_year VARCHAR(400)," \
+                     f"institute_type VARCHAR(400)," \
+                     f"country VARCHAR(400)," \
+                     f"state VARCHAR(400)," \
+                     f"city VARCHAR(400)," \
+                     f"website VARCHAR(400)," \
+                     f"phone_no VARCHAR(400)," \
+                     f"fax VARCHAR(400)," \
+                     f"email_address VARCHAR(400)," \
+                     f"main_campus_address VARCHAR(400)," \
+                     f"latitude VARCHAR(400)," \
+                     f"longitude VARCHAR(400)," \
+                     f"logo VARCHAR(400)," \
+                     f"brochure VARCHAR(400)," \
+                     f"no_of_programs VARCHAR(400)," \
+                     f"no_of_international_students VARCHAR(400)," \
+                     f"`international_student_%` VARCHAR(400)," \
+                     f"on_campus_hostel_availability VARCHAR(400)," \
+                     f"hostel_fee VARCHAR(400)," \
+                     f"hostel_fee_currency VARCHAR(400)," \
+                     f"qs_ranking VARCHAR(400)," \
+                     f"qs_ranking_year VARCHAR(400)," \
+                     f"times_higher_education VARCHAR(400)," \
+                     f"times_higher_education_year VARCHAR(400)," \
+                     f"usnews VARCHAR(400)," \
+                     f"usnews_year VARCHAR(400)," \
+                     f"intake_month VARCHAR(400)," \
+                     f"intake_month_1 VARCHAR(400)," \
+                     f"intake_month_2 VARCHAR(400))"
+        database._create_table(conxx, inst_table)
+        conxx.commit()
+        conxx.close()
+
+        course_table = f"CREATE TABLE courses(" \
+                       f"name_of_the_university VARCHAR(400)," \
+                       f"level VARCHAR(400)," \
+                       f"stream VARCHAR(400)," \
+                       f"degree VARCHAR(400)," \
+                       f"specialization VARCHAR(400)," \
+                       f"course_name VARCHAR(400)," \
+                       f"`department\school` VARCHAR(400)," \
+                       f"mode VARCHAR(400)," \
+                       f"duration VARCHAR(400)," \
+                       f"duration_type VARCHAR(400)," \
+                       f"tuition_fees VARCHAR(400)," \
+                       f"tuition_fees_currency VARCHAR(400)," \
+                       f"tuition_fees_duration_type VARCHAR(400)," \
+                       f"application_fee VARCHAR(400)," \
+                       f"application_fee_currency VARCHAR(400)," \
+                       f"" \
+                       f")"
         insts_dict = {}
         for id_url in ids_urls:
             institute_id = id_url[0]
             institute_url = id_url[1]
             print(str(institute_id) + "=>" + institute_url)
             name, details_for_course, inst_dict = scrape_institute(institute_url, institute_id)
-            insts_dict.update({name: inst_dict})
-            rurl_courses = scrape_rurl_courses(institute_url)
-            # print(rurl_courses)
+            # print(inst_dict)
+            # inst_record = ins_query_maker("institutes", inst_dict)
+            # conxxx = database.connect("ShikshaData")
+            # print(inst_record)
+            # database.insert_record(conxxx, inst_record)
+            # conxxx.commit()
+            # conxxx.close()
+            # insts_dict.update({name: inst_dict})
+            rurl_courses = scrape_rurl_courses(institute_url)#todo course details
+            print(rurl_courses)
             courses_details = {
                 "name_of_the_university": name,
                 "courses": []
@@ -403,17 +538,16 @@ if __name__ == "__main__":
             for rurl_course in rurl_courses:
                 course_dtls = scrape_course_details(rurl_course, details_for_course)
                 courses_details["courses"].append(course_dtls)
-            # print(courses_details.get("courses")[0])
+            print(courses_details.get("courses")[0])
             write_json(courses_details, institute_url.split('/')[-1] + "_courses")
         # print(insts_dict)
 
     except (ConnectionError, ValueError):
         pass
     finally:
-        write_json(insts_dict, "institutes")
+        # write_json(insts_dict, "institutes")
         del database
         pass
-
 
 
 

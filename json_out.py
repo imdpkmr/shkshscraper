@@ -366,6 +366,8 @@ def scrape_course_details(rurl, details_for_course):
     for exam, exam_score in exams_entrance.items():
         exams.append(exam.split(' ')[0])
         exams_score.append(exam_score)
+
+    # print(details_for_course)
     try:
         course_dtls = {
             'level': coursedetails.get("level_id"),
@@ -380,17 +382,17 @@ def scrape_course_details(rurl, details_for_course):
             'tuition_fees': coursedetails.get("fee"),#Styled__TableStyle-sc-10ucg51-0 vXiFr
             'tuition_fee_currency': coursedetails.get("fee_currency_id"),
             'tuition_fee_duration_type': 'Annual ',#many don't have this
-            'application_fee': details_for_course.get("application_fee"), #TODoThese fields are there in overview section receive it as an arg
+            'application_fee': details_for_course.get("application_fee")[0], #TODoThese fields are there in overview section receive it as an arg
             'application_fee_currency': details_for_course.get("application_fee_currency"),
-            'exam': exams,
-            'exam_section': [
-                '??',
-                '??'
-            ],# TODO: what's this exam section in course details section??
-            'exam_score': exams_score,
-            'date_type': 'Application End Date',#TO ddDo the following are in overview page receive it as an arg
-            'season': coursedetails.get("season"),
-            'date': coursedetails.get("date"),
+            # 'exam': exams,
+            # 'exam_score': exams_score,
+            # 'exam_section': [
+            #     '??',
+            #     '??'
+            # ],# TODO: what's this exam section in course details section??
+            # 'date_type': 'Application End Date',#TO ddDo the following are in overview page receive it as an arg
+            # 'season': details_for_course.get("season"),
+            # 'date': details_for_course.get("date"),
         }
     except (IndexError, TypeError, AttributeError):
         pass
@@ -457,7 +459,7 @@ if __name__ == "__main__":#todo change it to original
     try:
         database = DBQueries()
         conx = database.connect("Institute")
-        ids_urls = database.get_records(conx, "SELECT * FROM institute_urls where institute_id>8576 order by institute_id")
+        ids_urls = database.get_records(conx, "SELECT * FROM institute_urls where institute_id>0 order by institute_id")
         conx.close()
         conxx = database.connect("ShikshaData")
         inst_table = f"CREATE TABLE IF NOT EXISTS institutes(" \
@@ -493,28 +495,36 @@ if __name__ == "__main__":#todo change it to original
                      f"intake_month VARCHAR(400)," \
                      f"intake_month_1 VARCHAR(400)," \
                      f"intake_month_2 VARCHAR(400))"
+        course_table_query = f"CREATE TABLE courses(" \
+                             f"name_of_the_university VARCHAR(400)," \
+                             f"level VARCHAR(400)," \
+                             f"stream VARCHAR(400)," \
+                             f"degree VARCHAR(400)," \
+                             f"specialization VARCHAR(400)," \
+                             f"course_name VARCHAR(400)," \
+                             f"`department\school` VARCHAR(400)," \
+                             f"mode VARCHAR(400)," \
+                             f"duration VARCHAR(400)," \
+                             f"duration_type VARCHAR(400)," \
+                             f"tuition_fees VARCHAR(400)," \
+                             f"tuition_fees_currency VARCHAR(400)," \
+                             f"tuition_fees_duration_type VARCHAR(400)," \
+                             f"application_fee VARCHAR(400)," \
+                             f"application_fee_currency VARCHAR(400)," \
+                             f"date_type VARCHAR(400)," \
+                             f"season VARCHAR(400)," \
+                             f"date VARCHAR(400)" \
+                             f")"
         database._create_table(conxx, inst_table)
         conxx.commit()
         conxx.close()
 
-        course_table = f"CREATE TABLE courses(" \
-                       f"name_of_the_university VARCHAR(400)," \
-                       f"level VARCHAR(400)," \
-                       f"stream VARCHAR(400)," \
-                       f"degree VARCHAR(400)," \
-                       f"specialization VARCHAR(400)," \
-                       f"course_name VARCHAR(400)," \
-                       f"`department\school` VARCHAR(400)," \
-                       f"mode VARCHAR(400)," \
-                       f"duration VARCHAR(400)," \
-                       f"duration_type VARCHAR(400)," \
-                       f"tuition_fees VARCHAR(400)," \
-                       f"tuition_fees_currency VARCHAR(400)," \
-                       f"tuition_fees_duration_type VARCHAR(400)," \
-                       f"application_fee VARCHAR(400)," \
-                       f"application_fee_currency VARCHAR(400)," \
-                       f"" \
-                       f")"
+        ct_conx = database.connect("ShikshaData")
+        database._create_table(ct_conx, course_table_query)
+        ct_conx.commit()
+        ct_conx.close
+
+
         insts_dict = {}
         for id_url in ids_urls:
             institute_id = id_url[0]
@@ -530,15 +540,16 @@ if __name__ == "__main__":#todo change it to original
             # conxxx.close()
             # insts_dict.update({name: inst_dict})
             rurl_courses = scrape_rurl_courses(institute_url)#todo course details
-            print(rurl_courses)
+            # print(rurl_courses)
             courses_details = {
                 "name_of_the_university": name,
                 "courses": []
             }
+            # print(details_for_course)
             for rurl_course in rurl_courses:
                 course_dtls = scrape_course_details(rurl_course, details_for_course)
+                # print(course_dtls)
                 courses_details["courses"].append(course_dtls)
-            print(courses_details.get("courses")[0])
             write_json(courses_details, institute_url.split('/')[-1] + "_courses")
         # print(insts_dict)
 

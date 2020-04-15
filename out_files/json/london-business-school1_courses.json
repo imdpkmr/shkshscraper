@@ -1,0 +1,69 @@
+{
+  "name_of_the_university": "London Business School",
+  "courses": [
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "MBA",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "15-21",
+      "duration_type": "Months",
+      "tuition_fees": "46,42,072",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "90",
+      "application_fee_currency": "Pound"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Masters in Management",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "12-16",
+      "duration_type": "Months",
+      "tuition_fees": "31,05,312",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "90",
+      "application_fee_currency": "Pound"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Masters in Finance",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "10-16",
+      "duration_type": "Months",
+      "tuition_fees": "41,28,956",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "90",
+      "application_fee_currency": "Pound"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Sloan Masters in Leadership and Strategy",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "12",
+      "duration_type": "Months",
+      "tuition_fees": "68,39,080",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "90",
+      "application_fee_currency": "Pound"
+    }
+  ]
+}

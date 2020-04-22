@@ -1,0 +1,69 @@
+{
+  "name_of_the_university": "Louisiana Tech University",
+  "courses": [
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Science in Computer Science",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1.5-2",
+      "duration_type": "Years",
+      "tuition_fees": "7,00,917",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Science in Engineering",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1.5-2",
+      "duration_type": "Years",
+      "tuition_fees": "7,00,917",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Arts in Industrial & Organizational Psychology",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1.5",
+      "duration_type": "Years",
+      "tuition_fees": "7,00,917",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Science in Biology",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1.5-2",
+      "duration_type": "Years",
+      "tuition_fees": "7,00,917",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "name_of_the_university": "Emily Carr University",
+  "courses": [
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Digital Media",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "16",
+      "duration_type": "Months",
+      "tuition_fees": "17,93,220",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Bachelor of Media Arts in Animation",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "4",
+      "duration_type": "Years",
+      "tuition_fees": "8,09,883",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Bachelor of Design in Industrial Design",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "4",
+      "duration_type": "Years",
+      "tuition_fees": "8,09,883",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Fine Arts",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "9,91,705",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    }
+  ]
+}

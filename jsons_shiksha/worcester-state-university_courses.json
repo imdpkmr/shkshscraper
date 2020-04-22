@@ -1,0 +1,69 @@
+{
+  "name_of_the_university": "Worcester State University",
+  "courses": [
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Science in Management",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1.5-2",
+      "duration_type": "Years",
+      "tuition_fees": "4,34,617",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Science Health Care Administration",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "1,91,430",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Science in Biotechnology ",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1.5-2",
+      "duration_type": "Years",
+      "tuition_fees": "2,00,505",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Education in Leadership and Administration",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "5,66,846",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    }
+  ]
+}

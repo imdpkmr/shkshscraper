@@ -1,0 +1,53 @@
+{
+  "name_of_the_university": "Marymount University",
+  "courses": [
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "M.S. in Cybersecurity",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1.5",
+      "duration_type": "Years",
+      "tuition_fees": "16,33,536",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "M.B.A. Business Administration",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1.5",
+      "duration_type": "Years",
+      "tuition_fees": "17,69,664",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "M.S. in Information Technology",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1.5",
+      "duration_type": "Years",
+      "tuition_fees": "16,33,536",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    }
+  ]
+}

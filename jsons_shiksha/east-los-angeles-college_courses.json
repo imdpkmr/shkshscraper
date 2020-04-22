@@ -1,0 +1,69 @@
+{
+  "name_of_the_university": "East Los Angeles College",
+  "courses": [
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "B.Tech in Civil Engineering",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "4",
+      "duration_type": "Years",
+      "tuition_fees": "4,77,299",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Bachelors in Chemistry",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2-3",
+      "duration_type": "Years",
+      "tuition_fees": "4,57,305",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Associate in Science - Mathematics",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "5,16,861",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Associate in Science - Nursing",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "4,77,299",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    }
+  ]
+}

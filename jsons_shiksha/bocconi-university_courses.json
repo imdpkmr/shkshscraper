@@ -1,0 +1,69 @@
+{
+  "name_of_the_university": "Bocconi University",
+  "courses": [
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "MSc in International Management",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "10,76,240",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "100",
+      "application_fee_currency": "Euro"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "MBA",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1",
+      "duration_type": "Year",
+      "tuition_fees": "44,01,800",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "100",
+      "application_fee_currency": "Euro"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "MSc in Marketing Management ",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "10,76,240",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "100",
+      "application_fee_currency": "Euro"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "MSc Management",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "10,76,240",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "100",
+      "application_fee_currency": "Euro"
+    }
+  ]
+}

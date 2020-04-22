@@ -1,0 +1,53 @@
+{
+  "name_of_the_university": "Lappeenranta University of Technology",
+  "courses": [
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Science in Technology (Chemical and Process Engineering)",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "8,46,500",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Science in Economics and Business Administration (International Marketing Management)",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "8,46,500",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Science in Economics and Business Administration (Strategic Finance & Business Analytics)",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "8,46,500",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "name_of_the_university": "Cesar Ritz College",
+  "courses": [
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Bachelor in Hotel and Tourism Management",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "24,25,170",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Arts in International Business in Hotel and Tourism Management",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1",
+      "duration_type": "Year",
+      "tuition_fees": "37,81,060",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Science in International Hospitality Management",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1",
+      "duration_type": "Year",
+      "tuition_fees": "37,81,060",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    }
+  ]
+}

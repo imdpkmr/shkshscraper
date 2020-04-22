@@ -1,0 +1,69 @@
+{
+  "name_of_the_university": "Gonzaga University",
+  "courses": [
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Business Administration",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1",
+      "duration_type": "Year",
+      "tuition_fees": "22,34,414",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "B.S. in Engineering Management",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "4",
+      "duration_type": "Years",
+      "tuition_fees": "27,63,682",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "B.S. in Electrical Engineering",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "4",
+      "duration_type": "Years",
+      "tuition_fees": "27,63,682",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "B.S. in Computer Science",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "4",
+      "duration_type": "Years",
+      "tuition_fees": "27,63,682",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    }
+  ]
+}

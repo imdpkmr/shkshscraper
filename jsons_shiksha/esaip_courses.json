@@ -1,0 +1,53 @@
+{
+  "name_of_the_university": "ESAIP",
+  "courses": [
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Masters in Risk Management & Environment Engineering",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "5,29,063",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "40",
+      "application_fee_currency": "Euro"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "MSS in Security Science",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "5,54,458",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "40",
+      "application_fee_currency": "Euro"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Masters in Digital Engineering",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "5,29,063",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "40",
+      "application_fee_currency": "Euro"
+    }
+  ]
+}

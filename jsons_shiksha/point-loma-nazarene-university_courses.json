@@ -1,0 +1,69 @@
+{
+  "name_of_the_university": "Point Loma Nazarene University",
+  "courses": [
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Bachelors of Science in Information Systems ",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "4",
+      "duration_type": "Years",
+      "tuition_fees": "23,32,610",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "BS in Engineering Physics",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "4",
+      "duration_type": "Years",
+      "tuition_fees": "23,32,610",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Bachelor of Science in Mathematics",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "4",
+      "duration_type": "Years",
+      "tuition_fees": "23,32,610",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "MBA",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1",
+      "duration_type": "Year",
+      "tuition_fees": "23,37,573",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    }
+  ]
+}

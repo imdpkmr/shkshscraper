@@ -1,0 +1,69 @@
+{
+  "name_of_the_university": "University of Hawaii at Manoa",
+  "courses": [
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Human Resource Management",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "16",
+      "duration_type": "Months",
+      "tuition_fees": "17,76,825",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "MS Mechanical Engineering",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1.5-2",
+      "duration_type": "Years",
+      "tuition_fees": "18,62,047",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Bachelor of Science in Electrical Engineering",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "4",
+      "duration_type": "Years",
+      "tuition_fees": "29,64,684",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Bachelor of Science in Computer Science (BS CS)",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "4",
+      "duration_type": "Years",
+      "tuition_fees": "29,16,117",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    }
+  ]
+}

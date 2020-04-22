@@ -1,0 +1,53 @@
+{
+  "name_of_the_university": "California College of the Arts",
+  "courses": [
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Bachelor of Fine Arts in Industrial Design ",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2-3",
+      "duration_type": "Years",
+      "tuition_fees": "31,88,798",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "MBA in Design Strategy",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "33,56,406",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Bachelor of Architecture Degree",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "5",
+      "duration_type": "Years",
+      "tuition_fees": "31,88,798",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    }
+  ]
+}

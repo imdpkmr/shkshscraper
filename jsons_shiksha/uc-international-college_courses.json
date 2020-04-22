@@ -1,0 +1,69 @@
+{
+  "name_of_the_university": "UC International College",
+  "courses": [
+    {
+      "level": "Bachelors Certificate Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Certificate in Information Technology",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1",
+      "duration_type": "Year",
+      "tuition_fees": "9,87,000",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Bachelor of Science",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1-1.5",
+      "duration_type": "Years",
+      "tuition_fees": "13,48,900",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Certificate Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Certificate in Business",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1",
+      "duration_type": "Year",
+      "tuition_fees": "9,87,000",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Bachelor of Engineering",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1-1.5",
+      "duration_type": "Years",
+      "tuition_fees": "18,18,900",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    }
+  ]
+}

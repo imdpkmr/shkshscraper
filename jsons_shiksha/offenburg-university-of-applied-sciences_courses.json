@@ -1,0 +1,69 @@
+{
+  "name_of_the_university": "Offenburg University of Applied Sciences",
+  "courses": [
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "MBA \"International Business Consulting\" (IBC)",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "15",
+      "duration_type": "Months",
+      "tuition_fees": "5,86,878",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Science in Mechanical Engineering",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1.5",
+      "duration_type": "Years",
+      "tuition_fees": "0",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Science in Process Engineering",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1.5",
+      "duration_type": "Years",
+      "tuition_fees": "0",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Science in Communication and Media Engineering",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "0",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "name_of_the_university": "Charles Sturt University - Sydney Campus",
+  "courses": [
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Business Administration (with specialisations) (12 subjects)",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1.5",
+      "duration_type": "Years",
+      "tuition_fees": "15,63,267",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Information Technology (with specialisations) (12 subjects) ",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "1.5",
+      "duration_type": "Years",
+      "tuition_fees": "12,19,442",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Masters Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Master of Information Technology (with specialisations) (16 subjects)",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "2",
+      "duration_type": "Years",
+      "tuition_fees": "16,25,923",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    },
+    {
+      "level": "Bachelors Program",
+      "stream": "??",
+      "degree": "??",
+      "specialization": "??",
+      "course_name": "Bachelor of Business (Management)",
+      "department/school": "??",
+      "mode": "??",
+      "duration": "3",
+      "duration_type": "Years",
+      "tuition_fees": "11,74,800",
+      "tuition_fee_currency": "INR",
+      "tuition_fee_duration_type": "Annual ",
+      "application_fee": "Fees",
+      "application_fee_currency": "No"
+    }
+  ]
+}

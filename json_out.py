@@ -268,13 +268,22 @@ def scrape_institute(url, id):
                 "intake_month_2": intake_months.get("intake_month_2"),
             },
         }
-        details_for_course = {
-            'application_fee': apfee.get("application_fee"),
-            'application_fee_currency': apfee.get("application_fee_currency"),
-            'date_type': 'Application End Date',# todo where are these field??
-            'season': 'June',
-            'date': '30, 2020',
-        }
+        if apfee.get("application_fee")[0].isdigit():
+            details_for_course = {
+                'application_fee': apfee.get("application_fee"),
+                'application_fee_currency': apfee.get("application_fee_currency"),
+                'date_type': '??',# todo where are these field??
+                'season': '??',
+                'date': '??',
+            }
+        else:
+            details_for_course = {
+                'application_fee': "No Fees",
+                'application_fee_currency': "",
+                'date_type': '??',  # todo where are these field??
+                'season': '??',
+                'date': '??',
+            }
     except KeyError:
         print('key: value not found')
     except ValueError as str_err:
@@ -458,7 +467,7 @@ def object_execution():
         try:
             database = DBQueries()
             conx = database.connect("Institute")
-            ids_urls = database.get_records(conx, "SELECT * FROM institute_urls where is_scraped = false order by institute_id")
+            ids_urls = database.get_records(conx, "SELECT * FROM institute_urls where is_scraped = false order by institute_id limit 2")
             conx.close()
 
             # inst_table = f"CREATE TABLE IF NOT EXISTS institutes(" \
@@ -529,10 +538,9 @@ def object_execution():
 
             insts_dict = {}
             for id_url in ids_urls:
-                print('sleep for 1 second at ', datetime.datetime.now())
+                print('scraping ', str(institute_id) + "=>" + institute_url,'  at ', datetime.datetime.now())
                 institute_id = id_url[0]
                 institute_url = id_url[1]
-                print(str(institute_id) + "=>" + institute_url)
                 name, details_for_course, inst_dict = scrape_institute(institute_url, institute_id)
                 # print(inst_dict)
                 # inst_record = ins_query_maker("institutes", inst_dict)
